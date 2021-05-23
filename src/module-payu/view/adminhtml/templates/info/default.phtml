@@ -1,0 +1,105 @@
+<?php
+/**
+ * @var \Magento\Payment\Block\Info $block
+ * @see \Magento\Payment\Block\Info
+ */
+$specificInfo = $block->getSpecificInformation();
+$order = $block->getInfo()->getOrder();
+$paymentTitle = $block->getMethod()->getConfigData('title', $order->getStoreId());
+?>
+<div class="payu method-title">
+	<span><?= $block->escapeHtml($paymentTitle) ?></span>
+	<img src="<?= $block->getViewFileUrl('Eloom_PayU/images/logo.png'); ?>">
+</div>
+<table class="data-table admin__table-secondary payu payment__info">
+	<tr>
+		<th><?= __('Transaction State') ?></th>
+		<td>
+			<?= $block->getTransactionState() ?>
+			<span class="icon <?= $block->getIconTransactionState()?>" aria-hidden="true"></span>
+		</td>
+	</tr>
+	<tr>
+		<th><?= __('PayU Order ID') ?></th>
+		<td>
+			<?= $block->getOrderId() ?>
+		</td>
+	</tr>
+	<tr>
+		<th><?= __('PayU Transaction ID') ?></th>
+		<td>
+			<?= $block->getTransactionId() ?>
+		</td>
+	</tr>
+
+	<?php if($ccType = $block->getCcType()):?>
+		<tr>
+			<th><?= __('Credit Card Type') ?></th>
+			<td class="cc-type">
+				<?= $ccType; ?>
+			</td>
+		</tr>
+	<?php endif;?>
+	<?php if($lastFour = $block->getCcLast4()):?>
+		<tr>
+			<th><?= __('Last Credit Card Number') ?></th>
+			<td class="cc-last-4">
+				<?= $lastFour; ?>
+			</td>
+		</tr>
+	<?php endif;?>
+	<?php if($installments = $block->getInstallments()):?>
+		<tr>
+			<th><?= __('Installments') ?></th>
+			<td class="$installments">
+				<?= $installments; ?>
+			</td>
+		</tr>
+	<?php endif;?>
+
+	<?php if($barCode = $block->getBarCode()):?>
+		<tr>
+			<th><?= __('Bar Code') ?></th>
+			<td class="boleto-barcode">
+				<?= $barCode; ?>
+			</td>
+		</tr>
+	<?php endif;?>
+	<?php if($link = $block->getPaymentLink()):?>
+		<tr>
+			<th><?= __('Link') ?></th>
+			<td class="boleto-link">
+				<a class="action-default" href="<?= $link; ?>" target="_blank" title="<?= __('Open') ?>">
+					<?= __('Open') ?>
+					<img src="<?php echo $block->getViewFileUrl('Eloom_PayU/images/barcode.svg'); ?>"/>
+				</a>
+			</td>
+		</tr>
+	<?php endif;?>
+	<?php if($link = $block->getPdfLink()):?>
+		<tr>
+			<th><?= __('PDF') ?></th>
+			<td class="boleto-pdf">
+				<a class="action-default" href="<?= $link; ?>" target="_blank" title="<?= __('Print') ?>">
+					<?= __('Print') ?>
+					<img src="<?php echo $block->getViewFileUrl('Eloom_PayU/images/print.svg'); ?>"/>
+				</a>
+			</td>
+		</tr>
+	<?php endif;?>
+</table>
+
+<?php if ($specificInfo) : ?>
+	<table class="data-table admin__table-secondary payu payment__info especific">
+		<?php foreach ($specificInfo as $label => $value) : ?>
+			<tr>
+				<th><?= $block->escapeHtml($label) ?></th>
+				<td>
+					<?= nl2br($block->escapeHtml(implode("\n", $block->getValueAsArray($value, true)))) ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+<?= $block->getChildHtml() ?>

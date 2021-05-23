@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Eloom\PayU\Model\Ui\ConfigProvider">
+		<arguments>
+			<argument name="config" xsi:type="object">Eloom\PayU\Gateway\Config\Config</argument>
+		</arguments>
+	</type>
+	<type name="Eloom\PayU\Model\Ui\Cc\ConfigProvider">
+		<arguments>
+			<argument name="config" xsi:type="object">Eloom\PayU\Gateway\Config\Config</argument>
+			<argument name="ccConfig" xsi:type="object">Eloom\PayU\Gateway\Config\Cc\Config</argument>
+		</arguments>
+	</type>
+
+	<type name="Magento\Checkout\Model\CompositeConfigProvider">
+		<arguments>
+			<argument name="configProviders" xsi:type="array">
+				<item name="eloom_payments_payu_config_provider" xsi:type="object">Eloom\PayU\Model\Ui\ConfigProvider</item>
+				<item name="eloom_payments_payu_cc_config_provider" xsi:type="object">Eloom\PayU\Model\Ui\Cc\ConfigProvider</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Vault\Model\Ui\TokensConfigProvider">
+		<arguments>
+			<argument name="tokenUiComponentProviders" xsi:type="array">
+				<item name="eloom_payments_payu_cc" xsi:type="object">Eloom\PayU\Model\Ui\TokenUiComponentProvider</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

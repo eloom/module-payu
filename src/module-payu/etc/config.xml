@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<payment>
+			<eloom_payments_payu>
+				<model>EloomPayUPaymentFacade</model>
+				<active>0</active>
+				<debug>1</debug>
+				<order_status>pending</order_status>
+				<environment>production</environment>
+			</eloom_payments_payu>
+			<eloom_payments_payu_cc>
+				<model>EloomPayUPaymentCcFacade</model>
+				<title>Credit Card</title>
+				<allowspecific>1</allowspecific>
+				<specificcountry>AR,BR,CL,CO,MX,PA,PE</specificcountry>
+				<active>0</active>
+				<debug>0</debug>
+				<icon>flat</icon>
+				<is_gateway>1</is_gateway>
+				<can_use_internal>0</can_use_internal>
+				<can_use_checkout>1</can_use_checkout>
+				<!--<can_initialize>1</can_initialize>-->
+				<can_authorize>1</can_authorize>
+				<can_capture>1</can_capture>
+				<can_void>1</can_void>
+				<can_cancel>1</can_cancel>
+				<can_details>1</can_details>
+				<can_authorize_vault>1</can_authorize_vault>
+				<can_capture_vault>1</can_capture_vault>
+				<payment_action>authorize</payment_action>
+				<interests>P</interests>
+				<currency>BRL</currency>
+				<discount>0</discount>
+				<min_installment>15.00</min_installment>
+				<min_order_total>15.00</min_order_total>
+				<!-- Mexico -->
+				<months_without_interest_active>0</months_without_interest_active>
+				<months_without_interest>3</months_without_interest>
+				<sort_order>10</sort_order>
+			</eloom_payments_payu_cc>
+			<eloom_payments_payu_cc_vault>
+				<model>EloomPayUPaymentVaultFacade</model>
+				<title>Stored Cards</title>
+				<instant_purchase>
+					<available>Eloom\PayU\Model\InstantPurchase\CreditCard\AvailabilityChecker</available>
+					<tokenFormat>Eloom\PayU\Model\InstantPurchase\CreditCard\TokenFormatter</tokenFormat>
+				</instant_purchase>
+			</eloom_payments_payu_cc_vault>
+		</payment>
+	</default>
+</config>

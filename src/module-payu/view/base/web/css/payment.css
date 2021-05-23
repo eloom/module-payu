@@ -1,0 +1,36 @@
+div.payu.method-title img {
+    float: right;
+}
+
+table.payu.payment__info span.icon::before {
+    display: inline-block;
+    font-family: 'Admin Icons';
+    font-size: 10px;
+    font-weight: 400;
+    padding: 3px;
+    color: #FFF;
+}
+
+table.payu.payment__info span.icon.PENDING::before,
+table.payu.payment__info span.icon.SUBMITTED::before {
+    content: "\e61d";
+    background-color: #E18000;
+}
+
+table.payu.payment__info span.icon.APPROVED::before {
+    content: "\e62d";
+    background-color: #a6c307;
+}
+
+table.payu.payment__info span.icon.CANCELLED::before,
+table.payu.payment__info span.icon.DECLINED::before,
+table.payu.payment__info span.icon.EXPIRED::before,
+table.payu.payment__info span.icon.ERROR::before {
+    content: "\e632";
+    background-color: #eb0208;
+}
+table.payu.payment__info .boleto-link img,
+table.payu.payment__info .boleto-pdf img {
+    width: 20px;
+    height: auto;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Sales\Model\OrderRepository">
+		<arguments>
+			<argument name="collectionProcessor" xsi:type="object">Eloom\PayU\Model\OrderRepository\CollectionProcessor</argument>
+		</arguments>
+	</type>
+	<virtualType name="Eloom\PayU\Model\OrderRepository\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+		<arguments>
+			<argument name="processors" xsi:type="array">
+				<item name="extensionAttributesJoin" xsi:type="object">Eloom\PayU\Model\OrderRepository\CollectionProcessor\ExtensionAttributeJoinProcessor</item>
+			</argument>
+		</arguments>
+	</virtualType>
+</config>

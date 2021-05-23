@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/error_mapping.xsd">
+	<message_list>
+		<message code="APPROVED" translate="true">APPROVED</message>
+		<message code="ANTIFRAUD_REJECTED" translate="true">ANTIFRAUD_REJECTED</message>
+		<message code="PAYMENT_NETWORK_REJECTED" translate="true">PAYMENT_NETWORK_REJECTED</message>
+		<message code="ENTITY_DECLINED" translate="true">ENTITY_DECLINED</message>
+		<message code="INTERNAL_PAYMENT_PROVIDER_ERROR" translate="true">INTERNAL_PAYMENT_PROVIDER_ERROR</message>
+		<message code="INACTIVE_PAYMENT_PROVIDER" translate="true">INACTIVE_PAYMENT_PROVIDER</message>
+		<message code="DIGITAL_CERTIFICATE_NOT_FOUND" translate="true">DIGITAL_CERTIFICATE_NOT_FOUND</message>
+		<message code="INVALID_EXPIRATION_DATE_OR_SECURITY_CODE" translate="true">INVALID_EXPIRATION_DATE_OR_SECURITY_CODE</message>
+		<message code="INVALID_RESPONSE_PARTIAL_APPROVAL" translate="true">INVALID_RESPONSE_PARTIAL_APPROVAL</message>
+		<message code="INSUFFICIENT_FUNDS" translate="true">INSUFFICIENT_FUNDS</message>
+		<message code="CREDIT_CARD_NOT_AUTHORIZED_FOR_INTERNET_TRANSACTIONS" translate="true">CREDIT_CARD_NOT_AUTHORIZED_FOR_INTERNET_TRANSACTIONS</message>
+		<message code="INVALID_TRANSACTION" translate="true">INVALID_TRANSACTION</message>
+		<message code="INVALID_CARD" translate="true">INVALID_CARD</message>
+		<message code="EXPIRED_CARD" translate="true">EXPIRED_CARD</message>
+		<message code="RESTRICTED_CARD" translate="true">RESTRICTED_CARD</message>
+		<message code="CONTACT_THE_ENTITY" translate="true">CONTACT_THE_ENTITY</message>
+		<message code="REPEAT_TRANSACTION" translate="true">REPEAT_TRANSACTION</message>
+		<message code="ENTITY_MESSAGING_ERROR" translate="true">ENTITY_MESSAGING_ERROR</message>
+		<message code="BANK_UNREACHABLE" translate="true">BANK_UNREACHABLE</message>
+		<message code="EXCEEDED_AMOUNT" translate="true">EXCEEDED_AMOUNT</message>
+		<message code="NOT_ACCEPTED_TRANSACTION" translate="true">NOT_ACCEPTED_TRANSACTION</message>
+		<message code="ERROR_CONVERTING_TRANSACTION_AMOUNTS" translate="true">ERROR_CONVERTING_TRANSACTION_AMOUNTS</message>
+		<message code="EXPIRED_TRANSACTION" translate="true">EXPIRED_TRANSACTION</message>
+		<message code="PENDING_TRANSACTION_REVIEW" translate="true">PENDING_TRANSACTION_REVIEW</message>
+		<message code="PENDING_TRANSACTION_CONFIRMATION" translate="true">PENDING_TRANSACTION_CONFIRMATION</message>
+		<message code="PENDING_TRANSACTION_TRANSMISSION" translate="true">PENDING_TRANSACTION_TRANSMISSION</message>
+		<message code="PAYMENT_NETWORK_BAD_RESPONSE" translate="true">PAYMENT_NETWORK_BAD_RESPONSE</message>
+		<message code="PAYMENT_NETWORK_NO_CONNECTION" translate="true">PAYMENT_NETWORK_NO_CONNECTION</message>
+		<message code="PAYMENT_NETWORK_NO_RESPONSE" translate="true">PAYMENT_NETWORK_NO_RESPONSE</message>
+		<message code="FIX_NOT_REQUIRED" translate="true">FIX_NOT_REQUIRED</message>
+		<message code="AUTOMATICALLY_FIXED_AND_SUCCESS_REVERSAL" translate="true">AUTOMATICALLY_FIXED_AND_SUCCESS_REVERSAL</message>
+		<message code="AUTOMATICALLY_FIXED_AND_UNSUCCESS_REVERSAL" translate="true">AUTOMATICALLY_FIXED_AND_UNSUCCESS_REVERSAL</message>
+		<message code="AUTOMATIC_FIXED_NOT_SUPPORTED" translate="true">AUTOMATIC_FIXED_NOT_SUPPORTED</message>
+		<message code="NOT_FIXED_FOR_ERROR_STATE" translate="true">NOT_FIXED_FOR_ERROR_STATE</message>
+		<message code="ERROR_FIXING_AND_REVERSING" translate="true">ERROR_FIXING_AND_REVERSING</message>
+		<message code="ERROR_FIXING_INCOMPLETE_DATA" translate="true">ERROR_FIXING_INCOMPLETE_DATA</message>
+		<message code="DECLINED_TEST_MODE_NOT_ALLOWED" translate="true">DECLINED_TEST_MODE_NOT_ALLOWED</message>
+		<message code="Parameter [payerDNI] is required." translate="true">Parameter [payerDNI] is required.</message>
+		<message code="The credit card expiration date is not valid" translate="true">The credit card expiration date is not valid</message>
+		<message code="ERROR" translate="true">ERROR</message>
+	</message_list>
+</mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Sales::sales" title="Sales" translate="title" sortOrder="20">
+					<resource id="Magento_Sales::sales_operation" title="Operations" translate="title" sortOrder="10">
+						<resource id="Magento_Sales::sales_order"  title="Orders" translate="title" sortOrder="10">
+							<resource id="Eloom_PayU::actions" title="Actions" translate="title" sortOrder="10">
+								<resource id="Eloom_PayU::payment_syncronize" title="Syncronize" translate="title" sortOrder="10" />
+							</resource>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

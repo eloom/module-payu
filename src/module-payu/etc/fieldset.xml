@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="DataObject/etc/fieldset.xsd">
+	<scope id="global">
+		<fieldset id="sales_convert_quote_address">
+			<field name="payu_discount_amount">
+				<aspect name="to_order"/>
+			</field>
+			<field name="payu_base_discount_amount">
+				<aspect name="to_order"/>
+			</field>
+			<field name="payu_interest_amount">
+				<aspect name="to_order"/>
+			</field>
+			<field name="payu_base_interest_amount">
+				<aspect name="to_order"/>
+			</field>
+		</fieldset>
+	</scope>
+</config>

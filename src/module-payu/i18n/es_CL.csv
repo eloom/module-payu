@@ -1,0 +1,149 @@
+# --
+"%1x %2 = %3","%1x en %2 = %3"
+"%1x %2 = %3 (%4% off)","%1x en %2 = %3 (%4% off)"
+"%1x %2 = %3 (c/ interest of %4% a.m.)","%1x en %2 = %3 (c/ interés de %4% a.m.)"
+
+# -- A
+"Applied over already converted value.",""Aplicado sobre el valor convertido."
+
+# -- B
+"Bar Code","Código de barras"
+
+# -- C
+"Credit Card","Tarjeta de crédito"
+"Credit Card Type", "Nombre de la tarjeta de crédito"
+"Card Holder Name","Titular de la tarjeta de crédito"
+"Credit Card Number","Número de la tarjeta de crédito"
+"Credit Card CVV","Cód. de seguridad"
+"Contact your Account Manager or PayU Support","Comuníquese con su Administrador de Cuenta o con el Soporte de PayU."
+
+# -- D
+"Discount first installment","Descuento en efectivo"
+"Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
+"Eloom PayU Wrong transaction status.","El sistema no obtuvo un estado válido de transacción de PayU."
+"Documentation","Documentação"
+
+# -- E
+"Error","Error"
+
+# -- G
+
+# -- H
+"here","aquí"
+"Holder Another","La tarjeta pertenece a otra persona"
+"Holder dniNumber","Cédula de Ciudadanía"
+"Holder Phone","Teléfono/Móvil"
+
+# -- I
+"Interest","Interés"
+"Interest (a.m.)","Interés (a.m.)"
+"Installments","Cuotas"
+"Installment ranges","Rangos de cuotas"
+"In %1x of %2","En %1x de %2"
+"Interest options","Opciones de interés"
+"<strong>Installments options</strong>","<strong>Opciones de cuotas</strong>"
+
+# -- L
+"Last Credit Card Number","Tarjeta"
+
+# -- M
+"Months without interest","Meses sin intereses"
+"Merchant pays interest","El comerciante paga intereses"
+"More info <a href=""https://docs.eloom.com.br/payu/customization"" target=""_blank"">here</a>.","Más información <a href=""https://docs.eloom.com.br/es/payu/customization"" target=""_blank"">aquí</a>."
+"More info <a href=""https://docs.eloom.com.br/payu/configuration"" target=""_blank"">here</a>.","Más información <a href=""https://docs.eloom.com.br/es/payu/configuration"" target=""_blank"">aquí</a>."
+
+# -- N
+"Not sure what PayU payment method to use? Click ","Não tem certeza de qual método de pagamento PayU usar? Clique"
+
+# -- O
+"%sOrder %s","%sOrden de compra %s"
+
+# -- P
+"Paying via","Pagando a través de"
+"PayU - General Settings","PayU - Configuraciones generales"
+"PayU - Credit Card Settings","PayU - Tarjeta de Crédito"
+"Payment from applicable countries","Pago para Países Seleccionados"
+"Payment from Specific countries","Pago para Países Específicos"
+"Payment option","Cuotas de pago"
+"Public Key","Clave Pública"
+"Pay With","Pagado con"
+"PayU Order ID","Número de transacción"
+"PayU Transaction ID","Identificador de transacción"
+"Production","Producción"
+"Process Payment","Pagar"
+"Processing...","Procesamiento..."
+"Payment method nonce can't be retrieved.","El método de pago no se puede recuperar."
+"PayU - Vault","PayU - Tokenización"
+"Payer pays interest", "El pagador paga intereses"
+
+# -- S
+"Sending information to the payment system.","Enviar información al sistema de pago."
+"Syncronize","Sincronizar"
+"Stored Cards","Tarjeta de crédito almacenada"
+
+# -- T
+"Transaction State","Estado de la transacción"
+"Transaction.State.APPROVED","Su compra ha sido aprobada."
+"Transaction.State.DECLINED","Su compra ha sido rechazada."
+"Transaction.State.ERROR","Error al procesar la transacción."
+"Transaction.State.EXPIRED","Su compra ha expirado."
+"Transaction.State.PENDING","Su compra está pendiente de pago."
+"Transaction.State.SUBMITTED","Transacción enviada a la entidad financiera y por alguna razón no terminó el procesamiento."
+"Transaction.State.CANCELLED","Su compra ha sido rechazada."
+"Taxvat is required","El campo Cédula de Ciudadanía no está presente o no está lleno."
+" to learn more."," para más informaciones."
+
+# -- U
+
+# -- V
+"Vault Enabled","Habilitar tokenización"
+
+# -- Y
+"Your payment was processed by PayU", "Su transacción fue procesada con éxito por PayU."
+"Your payment status is", "Estado de pago"
+
+# -- W
+"We store you payment information securely on PayU servers via SSL.","La información de pago se almacena de forma segura en los servidores de cumplimiento de PCI de PayU a través de una conexión SSL."
+"Without interest","Sin intereses"
+
+# --
+"APPROVED","La transacción ha sido aprobada."
+"ANTIFRAUD_REJECTED","La transacción fue rechazada. Asegúrese de ingresar los datos y la dirección de su tarjeta de crédito correctamente. La dirección de facturación debe coincidir con la dirección de la factura de la tarjeta de crédito."
+"PAYMENT_NETWORK_REJECTED","La institución financiera ha rechazado su transacción. Comuníquese con su banco para obtener más detalles."
+"ENTITY_DECLINED","El banco o la red financiera rechazaron la transacción debido a un error. Comuníquese con el banco emisor para obtener más información."
+"INTERNAL_PAYMENT_PROVIDER_ERROR","Hubo un error del sistema al intentar procesar el pago. Vuelva a intentarlo más tarde."
+"INACTIVE_PAYMENT_PROVIDER","El proveedor de pagos no estaba activo. Vuelva a intentarlo más tarde."
+"DIGITAL_CERTIFICATE_NOT_FOUND","La red financiera informó un error de autenticación. Comuníquese con la tienda e informe el problema."
+"INVALID_EXPIRATION_DATE_OR_SECURITY_CODE", "El código de seguridad o la fecha de vencimiento de la tarjeta de crédito no es válida. Verifique los datos e intente nuevamente."
+"INVALID_RESPONSE_PARTIAL_APPROVAL", "Tipo de respuesta no válida. La entidad financiera ha aprobado parcialmente la transacción pero el sistema la cancelará automáticamente."
+"INSUFFICIENT_FUNDS", "Asegúrese de tener saldo suficiente para realizar esta compra."
+"CREDIT_CARD_NOT_AUTHORIZED_FOR_INTERNET_TRANSACTIONS", "La tarjeta de crédito no estaba autorizada para transacciones por Internet. Comuníquese con el banco emisor y solicite la autorización."
+"INVALID_TRANSACTION", "La red financiera informó que la transacción no era válida. Asegúrese de haber ingresado los datos correctamente."
+"INVALID_CARD", "La tarjeta de crédito no es válida. Vuelva a intentarlo e ingrese la tarjeta correctamente."
+"EXPIRED_CARD", "La tarjeta de crédito ha caducado."
+"RESTRICTED_CARD", "La tarjeta de crédito tiene una restricción. Comuníquese con su banco emisor para obtener más detalles."
+"CONTACT_THE_ENTITY", "Debe comunicarse con el banco emisor para averiguar por qué se rechazó la transacción."
+"REPEAT_TRANSACTION", "Hubo un problema al procesar su transacción. Vuelva a intentarlo."
+"ENTITY_MESSAGING_ERROR", "La red financiera ha informado un error de comunicación con el banco. Vuelva a intentarlo."
+"BANK_UNREACHABLE", "El banco no estaba disponible. Vuelva a intentarlo más tarde."
+"EXCEEDED_AMOUNT", "El monto de la transacción excede el monto establecido por el banco. Comuníquese con el banco emisor para resolver el problema."
+"NOT_ACCEPTED_TRANSACTION", "La transacción no fue aceptada por el banco emisor por ningún motivo. Comuníquese con su banco emisor para resolver el problema."
+"ERROR_CONVERTING_TRANSACTION_AMOUNTS", "Se produjo un error al convertir los importes a la moneda de pago."
+"EXPIRED_TRANSACTION", "La transacción ha expirado. Inténtelo de nuevo."
+"PENDING_TRANSACTION_REVIEW", "La transacción se ha detenido y debe revisarse, esto puede deberse a filtros de seguridad."
+"PENDING_TRANSACTION_CONFIRMATION", "La transacción está pendiente de verificación."
+"PENDING_TRANSACTION_TRANSMISSION", "La transacción está pendiente de transmisión a la red financiera. Esto generalmente se aplica a las transacciones con métodos de pago en efectivo."
+"PAYMENT_NETWORK_BAD_RESPONSE", "El mensaje devuelto por la red financiera es inconsistente."
+"PAYMENT_NETWORK_NO_CONNECTION", "No se pudo conectar a la red financiera."
+"PAYMENT_NETWORK_NO_RESPONSE", "La red financiera no respondió."
+"FIX_NOT_REQUIRED", "Clínica de transacciones: Código de operación interno."
+"AUTOMATICALLY_FIXED_AND_SUCCESS_REVERSAL", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"AUTOMATICALLY_FIXED_AND_UNSUCCESS_REVERSAL", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"AUTOMATIC_FIXED_NOT_SUPPORTED", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"NOT_FIXED_FOR_ERROR_STATE", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"ERROR_FIXING_AND_REVERSING", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"ERROR_FIXING_INCOMPLETE_DATA", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
+"DECLINED_TEST_MODE_NOT_ALLOWED","Esta cuenta no está autorizada para transacción de prueba."
+"Parameter [payerDNI] is required.","Se requiere Cédula de Ciudadanía. Verifique la información de su cuenta para obtener la información correcta de Documento de Cédula de Ciudadanía."
+"The credit card expiration date is not valid","La fecha de vencimiento de la tarjeta de crédito no es válida."
+"ERROR","Hubo un error al procesar su transacción. Vuelva a intentarlo o elija otro método de pago."

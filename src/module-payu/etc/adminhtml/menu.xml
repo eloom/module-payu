@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Eloom_PayU::payment"
+             title="PayU"
+             module="Eloom_PayU"
+             action="adminhtml/system_config/edit/section/payment"
+             parent="Eloom_Core::menu"
+             resource="Magento_Payment::payment"
+             sortOrder="500"/>
+    </menu>
+</config>

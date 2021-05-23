@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+	<group id="eloom_payments_payu" translate="label" type="text" sortOrder="1010" showInDefault="1" showInWebsite="1" showInStore="0">
+		<label>PayU - General Settings</label>
+		
+		<field id="configuration_details" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Configuration Details</label>
+			<comment>https://docs.eloom.com.br/payu</comment>
+			<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset\Hint</frontend_model>
+		</field>
+		
+		<field id="environment" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Environment</label>
+			<source_model>Eloom\PayU\Block\Adminhtml\Config\Source\Environment</source_model>
+			<config_path>payment/eloom_payments_payu/environment</config_path>
+		</field>
+		<field id="credentials" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Account information</label>
+			<frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+			<validate>required-entry</validate>
+		</field>
+		<field id="merchant_id" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Merchant ID</label>
+			<config_path>payment/eloom_payments_payu/merchant_id</config_path>
+			<validate>required-entry</validate>
+		</field>
+		<field id="account_id" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Account ID</label>
+			<config_path>payment/eloom_payments_payu/account_id</config_path>
+			<validate>required-entry</validate>
+		</field>
+		<field id="api_key" translate="label" type="text" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>API Key</label>
+			<config_path>payment/eloom_payments_payu/api_key</config_path>
+			<validate>required-entry</validate>
+		</field>
+		<field id="login_api" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Login API</label>
+			<config_path>payment/eloom_payments_payu/login_api</config_path>
+			<validate>required-entry</validate>
+		</field>
+		<field id="public_key" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Public Key</label>
+			<config_path>payment/eloom_payments_payu/public_key</config_path>
+			<validate>required-entry</validate>
+		</field>
+	</group>
+</include>

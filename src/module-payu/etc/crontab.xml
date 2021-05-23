@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+		<job name="eloom_payment_payu_order_in_payment_review_state" instance="Eloom\PayU\Cron\SyncronizeOrderPaymentReviewState" method="execute">
+			<schedule>* * * * *</schedule>
+		</job>
+		<job name="eloom_payment_payu_in_pending_state" instance="Eloom\PayU\Cron\SyncronizePaymentInPendingState" method="execute">
+			<schedule>0/30 * * * *</schedule>
+		</job>
+		<job name="eloom_payment_payu_notifications" instance="Eloom\PayU\Cron\ProcessNotifications" method="execute">
+			<schedule>0/5 * * * *</schedule>
+		</job>
+	</group>
+</config>

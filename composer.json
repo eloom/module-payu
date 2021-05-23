@@ -1,0 +1,50 @@
+{
+  "name": "eloom/module-payu",
+  "description": "PayU Latam para Magento 2",
+  "homepage": "https://www.eloom.com.br/payu",
+  "keywords": [
+    "magento",
+    "magento 2",
+    "commerce",
+    "ecommerce",
+    "e-commerce",
+    "payu",
+    "payu latam",
+    "payu argentina",
+    "payu brazil",
+    "payu chile",
+    "payu colombia",
+    "payu mexico",
+    "payu panama",
+    "payu peru",
+    "payment",
+    "shop",
+    "eloom"
+  ],
+  "authors": [
+    {
+      "name": "eloom",
+      "email": "contato@eloom.com.br"
+    }
+  ],
+  "support": {
+    "email": "contato@eloom.com.br"
+  },
+  "require": {
+    "php": "~7.3|~7.4",
+    "magento/framework": "103.0.*",
+    "eloom/module-payment": "dev-main"
+  },
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "src/module-payu/registration.php"
+    ],
+    "psr-4": {
+      "Eloom\\PayU\\": "src/module-payu"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+<div class="payment-method" css="'_active': (getId() === isChecked())">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="
+                    attr: {'id': getId()},
+                    value: getId(),
+                    click: selectPaymentMethod,
+                    checked: isChecked,
+                    visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getId()}">
+            <img data-bind="attr: {
+            'src': getIcons(getCardType()).url,
+            'width': getIcons(getCardType()).width,
+            'height': getIcons(getCardType()).height,
+            'alt': getIcons(getCardType()).title
+            }" class="payment-icon">
+            <span translate="'ending'"></span>
+            <span text="getMaskedCard()"></span>
+            (
+            <span translate="'expires'"></span>:
+            <span text="getExpirationDate()"></span>
+            )
+        </label>
+    </div>
+
+    <div class="payment-method-content">
+        <fieldset class="fieldset vault method" data-bind="attr: {id: 'payment_form_' + getId()}">
+            <div class="payment-method-billing-address">
+                <each args="data: $parent.getRegion(getBillingAddressFormName()), as: '$item'">
+                    <render args="$item.getTemplate()"/>
+                </each>
+            </div>
+
+            <div class="field installment required" data-bind="visible: installments().length > 1">
+                <label data-bind="attr: {for: getId() + '_installments'}" class="label">
+                    <span data-bind="i18n: 'Payment option'"></span>
+                </label>
+                <div class="control">
+                    <select  name="payment[cc_installments]"
+                             data-bind="attr: {id: getId() + '_installments',
+                                       'data-container': getId() + '-installments',
+                                       'data-validate': JSON.stringify({'required':true})},
+                                       options: installments,
+                                       optionsText: 't',
+                                       optionsValue: 'v',
+                                       event: {change: reloadTotals}">
+                    </select>
+                </div>
+            </div>
+
+            <!-- ko if: (isShowBanksForMexico())-->
+            <div class="field bank required">
+                <label data-bind="attr: {for: getId() + '_bank'}" class="label">
+                    <span data-bind="i18n: 'Issuing bank'"></span>
+                </label>
+                <div class="control">
+                    <select  name="payment[cc_bank]"
+                             data-bind="attr: {id: getId() + '_bank',
+															 'data-container': getId() + '-bank',
+															 'data-validate': JSON.stringify({'required':true})},
+															  options: banksOfMexico,
+															  optionsText: 't',
+															  optionsValue: 'v'">
+                    </select>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="checkout-agreements-block">
+                <!-- ko foreach: getRegion('messages') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+                <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+        </fieldset>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="click: placeOrder,
+                                   attr: {title: placeOrderTotalOrderAmount},
+                                   css: {disabled:!isPlaceOrderActionAllowed()},
+                                   enable: (getId() == isChecked())"
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

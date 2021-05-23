@@ -1,0 +1,52 @@
+<?php
+$block = $this->getBlock();
+$isCc = $block->isCc();
+?>
+<div class="checkout-success-additional">
+	<dl>
+		<dd><?php echo __('Transaction State'); ?></dd>
+		<dt class="status"><?php echo __('Transaction.State.' . $block->getPayuTransactionState()); ?></dt>
+
+		<dd><?php echo __('PayU Order ID'); ?></dd>
+		<dt><?php echo $block->getOrderId(); ?></dt>
+
+		<dd><?php echo __('PayU Transaction ID'); ?></dd>
+		<dt><?php echo $block->getTransactionId(); ?></dt>
+		
+		<?php if($barCode = $block->getBarcode()):?>
+			<dd><?php echo __('Bar Code'); ?></dd>
+			<dt class="barcode"><?php echo $barCode; ?></dt>
+		<?php endif;?>
+		
+		<?php if($htmlLink = $block->getHtmlLink()):?>
+			<dd><?php echo __('Voucher Link'); ?></dd>
+			<dt class="link">
+				<a href="<?php echo $block->escapeUrl($htmlLink); ?>" target="_blank">
+					<?php echo $block->escapeHtml(__('Click here to open the Link')); ?>
+				</a>
+			</dt>
+		<?php endif;?>
+		
+		<?php if($pdfLink = $block->getPdfLink()):?>
+			<dd><?php echo __('Voucher PDF'); ?></dd>
+			<dt class="pdf">
+				<a href="<?php echo $block->escapeUrl($pdfLink); ?>" target="_blank">
+					<?php echo $block->escapeHtml(__('Click here to open the PDF')); ?>
+				</a>
+			</dt>
+		<?php endif;?>
+		
+		<?php if ($isCc):?>
+			<dd><?php echo __('Credit Card Type'); ?></dd>
+			<dt><?php echo $block->getCcType(); ?></dt>
+
+			<dd><?php echo __('Last Credit Card Number'); ?></dd>
+			<dt><?php echo sprintf('xxxx xxxx xxxx %s', $block->getCcLast4()); ?></dt>
+
+		  <?php if($block->hasInstallments()):?>
+				<dd><?php echo __('Installments'); ?></dd>
+				<dt><?php echo $block->getFormattedInstallmentAmount(); ?></dt>
+			<?php endif;?>
+		<?php endif;?>
+	</dl>
+</div>

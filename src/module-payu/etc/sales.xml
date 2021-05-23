@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+	<section name="quote">
+		<group name="totals">
+			<item name="eloom_discount" instance="Eloom\PayU\Model\Quote\Address\Total\Discount" />
+			<item name="eloom_interest" instance="Eloom\PayU\Model\Quote\Address\Total\Interest" />
+		</group>
+	</section>
+	<section name="order_invoice">
+		<group name="totals">
+			<item name="eloom_discount" instance="Eloom\PayU\Model\Invoice\Total\Discount" />
+			<item name="eloom_interest" instance="Eloom\PayU\Model\Invoice\Total\Interest" />
+		</group>
+	</section>
+	<section name="order_creditmemo">
+		<group name="totals">
+			<item name="eloom_discount" instance="Eloom\PayU\Model\Creditmemo\Total\Discount" />
+			<item name="eloom_interest" instance="Eloom\PayU\Model\Creditmemo\Total\Interest" />
+		</group>
+	</section>
+</config>

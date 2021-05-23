@@ -1,0 +1,13 @@
+resources:
+  path:
+    protocol: https
+    api:
+      environment:
+        production: api.payulatam.com
+        sandbox: sandbox.api.payulatam.com
+  services:
+    payments: payments-api/4.0/service.cgi
+    reports: reports-api/4.0/service.cgi
+    pricing: payments-api/rest/v4.3/pricing
+    recurring-plans: payments-api/rest/v4.3/plans
+aplication: 668978
