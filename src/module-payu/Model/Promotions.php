@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://www.eloom.com.br)
-* @version      1.1.0
+* @version      1.0.0
 * @license      https://www.eloom.com.br/license
 *
 */
