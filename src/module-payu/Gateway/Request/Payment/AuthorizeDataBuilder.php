@@ -218,7 +218,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				self::PHONE => preg_replace('/\D/', '', $payerFone),
 			],
 		];
-		if ($country->isArgentina() || $country->isColombia()) {
+		if ($country->isArgentina()) {
 			$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
 		}
 		
