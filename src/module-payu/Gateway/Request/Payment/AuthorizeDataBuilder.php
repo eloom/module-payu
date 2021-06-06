@@ -218,8 +218,14 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				self::PHONE => preg_replace('/\D/', '', $payerFone),
 			],
 		];
-		if ($country->isArgentina()) {
-			$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
+		if ($country->isArgentina() || $country->isColombia()) {
+			if($country->isArgentina()) {
+				$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
+			} else {
+				if(null != $order->getBillingAddress()->getDnitype()) {
+					$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
+				}
+			}
 		}
 		
 		$result[self::PAYER] = $payer;
