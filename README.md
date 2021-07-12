@@ -50,5 +50,5 @@ PagoEfectivo - instale o pacote adicional [PayU Peru](https://github.com/eloom/m
 * [Web site](https://eloom.tech/payu-latam)
 * [Documentação](https://docs.eloom.tech/payu-latam)
 * [Issue tracker](https://github.com/eloom/module-payu/issues)
-* [Composer packages](https://packagist.org/packages/eloom/module-payu)
+* [Composer](https://app.repman.io/organization/eloom/package/6ffeb10a-d231-4305-8ab7-ad4aea8d4ae3/details)
 * [Código fonte](https://github.com/eloom/module-payu)
