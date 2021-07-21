@@ -138,6 +138,28 @@ class AuthorizeDataBuilder implements BuilderInterface {
 		$result[self::IP_ADDRESS] = $ipAddress;
 		
 		/**
+		 * Street
+		 */
+		$billingStreet1 = null;
+		$billingStreet2 = null;
+		$shippingStreet1 = null;
+		$shippingStreet1 = null;
+		
+		try {
+			// version: >= 2.4.2-p1
+			$billingStreet1 = $billingAddress->getStreetLine(1);
+			$billingStreet2 = $billingAddress->getStreetLine(2);
+			$shippingStreet1 = $shippingAddress->getStreetLine(1);
+			$shippingStreet2 = $shippingAddress->getStreetLine(2);
+		} catch (\Exception $e) {
+			//version: < 2.4.2-p1
+			$billingStreet1 = $billingAddress->getStreetLine1();
+			$billingStreet2 = $billingAddress->getStreetLine2();
+			$shippingStreet1 = $shippingAddress->getStreetLine1();
+			$shippingStreet2 = $shippingAddress->getStreetLine2();
+		}
+		
+		/**
 		 * Buyer
 		 */
 		$name = trim($shippingAddress->getFirstname()) . ' ' . trim($shippingAddress->getLastname());
@@ -150,8 +172,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::CONTACT_PHONE => preg_replace('/\D/', '', $shippingAddress->getTelephone()),
 			self::DNI_NUMBER => $taxvat,
 			self::SHIPPING_ADDRESS => [
-				self::STREET_1 => substr($shippingAddress->getStreetLine(1), 0, 100),
-				self::STREET_2 => substr($shippingAddress->getStreetLine(2), 0, 100),
+				self::STREET_1 => substr($shippingStreet1, 0, 100),
+				self::STREET_2 => substr($shippingStreet2, 0, 100),
 				self::CITY => $shippingAddress->getCity(),
 				self::STATE => $shippingAddress->getRegionCode(),
 				self::COUNTRY => $shippingAddress->getCountryId(),
@@ -178,8 +200,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::APPLICATION_ID => Builder::getInstance()->getApplicationId(),
 			self::SIGNATURE => Signature::buildSignature($this->config->getMerchantId($storeId), $this->config->getApiKey($storeId), $total, $country->getCurrency(), $order->getIncrementId(), Signature::MD5_ALGORITHM),
 			self::SHIPPING_ADDRESS => [
-				self::STREET_1 => substr($shippingAddress->getStreetLine(1), 0, 100),
-				self::STREET_2 => substr($shippingAddress->getStreetLine(2), 0, 100),
+				self::STREET_1 => substr($shippingStreet1, 0, 100),
+				self::STREET_2 => substr($shippingStreet2, 0, 100),
 				self::CITY => $shippingAddress->getCity(),
 				self::STATE => $shippingAddress->getRegionCode(),
 				self::COUNTRY => $shippingAddress->getCountryId(),
@@ -209,8 +231,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::DNI_NUMBER => $payerTaxVat,
 			self::CONTACT_PHONE => preg_replace('/\D/', '', $payerFone),
 			self::BILLING_ADDRESS => [
-				self::STREET_1 => substr($billingAddress->getStreetLine(1), 0, 100),
-				self::STREET_2 => substr($billingAddress->getStreetLine(2), 0, 100),
+				self::STREET_1 => substr($billingStreet1, 0, 100),
+				self::STREET_2 => substr($billingStreet2, 0, 100),
 				self::CITY => $billingAddress->getCity(),
 				self::STATE => $billingAddress->getRegionCode(),
 				self::COUNTRY => $billingAddress->getCountryId(),
