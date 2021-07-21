@@ -25,6 +25,7 @@ use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Sales\Model\OrderRepository;
 use Psr\Log\LoggerInterface;
 use Eloom\PayU\Gateway\PayU\Enumeration\TransactionType;
+use Magento\Payment\Gateway\Data\Order\AddressAdapter;
 
 class AuthorizeDataBuilder implements BuilderInterface {
 	
@@ -145,20 +146,22 @@ class AuthorizeDataBuilder implements BuilderInterface {
 		$shippingStreet1 = null;
 		$shippingStreet1 = null;
 		
-		try {
+		if(method_exists(AddressAdapter::class, 'getStreetLine')) {
 			// version: >= 2.4.2-p1
+			
 			$billingStreet1 = $billingAddress->getStreetLine(1);
 			$billingStreet2 = $billingAddress->getStreetLine(2);
 			$shippingStreet1 = $shippingAddress->getStreetLine(1);
 			$shippingStreet2 = $shippingAddress->getStreetLine(2);
-		} catch (\Exception $e) {
+		} else {
 			//version: < 2.4.2-p1
+			
 			$billingStreet1 = $billingAddress->getStreetLine1();
 			$billingStreet2 = $billingAddress->getStreetLine2();
 			$shippingStreet1 = $shippingAddress->getStreetLine1();
 			$shippingStreet2 = $shippingAddress->getStreetLine2();
 		}
-		
+
 		/**
 		 * Buyer
 		 */
