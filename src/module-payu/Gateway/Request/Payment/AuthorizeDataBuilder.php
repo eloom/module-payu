@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Eloom\PayU\Gateway\Request\Payment;
 
 use Eloom\PayU\Gateway\PayU\Enumeration\Country;
+use Eloom\PayU\Gateway\PayU\Enumeration\TransactionType;
 use Eloom\PayU\Plugin\Signature;
 use Eloom\PayU\Resources\Builder;
 use Magento\Framework\App\ObjectManager;
@@ -24,8 +25,6 @@ use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Sales\Model\OrderRepository;
 use Psr\Log\LoggerInterface;
-use Eloom\PayU\Gateway\PayU\Enumeration\TransactionType;
-use Magento\Payment\Gateway\Data\Order\AddressAdapter;
 
 class AuthorizeDataBuilder implements BuilderInterface {
 	
@@ -138,30 +137,20 @@ class AuthorizeDataBuilder implements BuilderInterface {
 		$result[self::PAYMENT_COUNTRY] = $country->getCode();
 		$result[self::IP_ADDRESS] = $ipAddress;
 		
-		/**
-		 * Street
-		 */
-		$billingStreet1 = null;
-		$billingStreet2 = null;
-		$shippingStreet1 = null;
-		$shippingStreet1 = null;
+		$addressClassName = get_class($billingAddress);
 		
-		if(method_exists(AddressAdapter::class, 'getStreetLine')) {
-			// version: >= 2.4.2-p1
-			
-			$billingStreet1 = $billingAddress->getStreetLine(1);
-			$billingStreet2 = $billingAddress->getStreetLine(2);
-			$shippingStreet1 = $shippingAddress->getStreetLine(1);
-			$shippingStreet2 = $shippingAddress->getStreetLine(2);
-		} else {
-			//version: < 2.4.2-p1
-			
-			$billingStreet1 = $billingAddress->getStreetLine1();
-			$billingStreet2 = $billingAddress->getStreetLine2();
-			$shippingStreet1 = $shippingAddress->getStreetLine1();
-			$shippingStreet2 = $shippingAddress->getStreetLine2();
+		if ($addressClassName == 'Magento\Payment\Gateway\Data\Order\AddressAdapter') {
+			$billingStreet1 = substr($billingAddress->getStreetLine1(), 0, 100);
+			$billingStreet2 = substr($billingAddress->getStreetLine1(), 0, 100);
+			$shippingStreet1 = substr($shippingAddress->getStreetLine1() ?: '', 0, 100);
+			$shippingStreet2 = substr($shippingAddress->getStreetLine1() ?: '', 0, 100);
+		} else if ($addressClassName == 'Magento\Sales\Model\Order\Address') {// version: >= 2.4.2-p1
+			$billingStreet1 = substr($billingAddress->getStreetLine(1), 0, 100);
+			$billingStreet2 = substr($billingAddress->getStreetLine(2), 0, 100);
+			$shippingStreet1 = substr($shippingAddress->getStreetLine(1) ?: '', 0, 100);
+			$shippingStreet2 = substr($shippingAddress->getStreetLine(2) ?: '', 0, 100);
 		}
-
+		
 		/**
 		 * Buyer
 		 */
@@ -175,8 +164,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::CONTACT_PHONE => preg_replace('/\D/', '', $shippingAddress->getTelephone()),
 			self::DNI_NUMBER => $taxvat,
 			self::SHIPPING_ADDRESS => [
-				self::STREET_1 => substr($shippingStreet1, 0, 100),
-				self::STREET_2 => substr($shippingStreet2, 0, 100),
+				self::STREET_1 => $shippingStreet1,
+				self::STREET_2 => $shippingStreet2,
 				self::CITY => $shippingAddress->getCity(),
 				self::STATE => $shippingAddress->getRegionCode(),
 				self::COUNTRY => $shippingAddress->getCountryId(),
@@ -203,8 +192,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::APPLICATION_ID => Builder::getInstance()->getApplicationId(),
 			self::SIGNATURE => Signature::buildSignature($this->config->getMerchantId($storeId), $this->config->getApiKey($storeId), $total, $country->getCurrency(), $order->getIncrementId(), Signature::MD5_ALGORITHM),
 			self::SHIPPING_ADDRESS => [
-				self::STREET_1 => substr($shippingStreet1, 0, 100),
-				self::STREET_2 => substr($shippingStreet2, 0, 100),
+				self::STREET_1 => $shippingStreet1,
+				self::STREET_2 => $shippingStreet2,
 				self::CITY => $shippingAddress->getCity(),
 				self::STATE => $shippingAddress->getRegionCode(),
 				self::COUNTRY => $shippingAddress->getCountryId(),
@@ -234,8 +223,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::DNI_NUMBER => $payerTaxVat,
 			self::CONTACT_PHONE => preg_replace('/\D/', '', $payerFone),
 			self::BILLING_ADDRESS => [
-				self::STREET_1 => substr($billingStreet1, 0, 100),
-				self::STREET_2 => substr($billingStreet2, 0, 100),
+				self::STREET_1 => $billingStreet1,
+				self::STREET_2 => $billingStreet2,
 				self::CITY => $billingAddress->getCity(),
 				self::STATE => $billingAddress->getRegionCode(),
 				self::COUNTRY => $billingAddress->getCountryId(),
