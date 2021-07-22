@@ -138,18 +138,22 @@ class AuthorizeDataBuilder implements BuilderInterface {
 		$result[self::IP_ADDRESS] = $ipAddress;
 		
 		$addressClassName = get_class($billingAddress);
-		
 		if ($addressClassName == 'Magento\Payment\Gateway\Data\Order\AddressAdapter') {
-			$billingStreet1 = substr($billingAddress->getStreetLine1(), 0, 100);
-			$billingStreet2 = substr($billingAddress->getStreetLine1(), 0, 100);
-			$shippingStreet1 = substr($shippingAddress->getStreetLine1() ?: '', 0, 100);
-			$shippingStreet2 = substr($shippingAddress->getStreetLine1() ?: '', 0, 100);
+			$billingStreet1 = $billingAddress->getStreetLine1();
+			$billingStreet2 = $billingAddress->getStreetLine2();
+			$shippingStreet1 = $shippingAddress->getStreetLine1();
+			$shippingStreet2 = $shippingAddress->getStreetLine2();
 		} else if ($addressClassName == 'Magento\Sales\Model\Order\Address') {// version: >= 2.4.2-p1
-			$billingStreet1 = substr($billingAddress->getStreetLine(1), 0, 100);
-			$billingStreet2 = substr($billingAddress->getStreetLine(2), 0, 100);
-			$shippingStreet1 = substr($shippingAddress->getStreetLine(1) ?: '', 0, 100);
-			$shippingStreet2 = substr($shippingAddress->getStreetLine(2) ?: '', 0, 100);
+			$billingStreet1 = $billingAddress->getStreetLine(1);
+			$billingStreet2 = $billingAddress->getStreetLine(2);
+			$shippingStreet1 = $shippingAddress->getStreetLine(1);
+			$shippingStreet2 = $shippingAddress->getStreetLine(2);
 		}
+		
+		$billingStreet1 = substr($billingStreet1, 0, 100);
+		$billingStreet2 = substr($billingStreet2, 0, 100);
+		$shippingStreet1 = substr($shippingStreet1 ?: '', 0, 100);
+		$shippingStreet2 = substr($shippingStreet2 ?: '', 0, 100);
 		
 		/**
 		 * Buyer
