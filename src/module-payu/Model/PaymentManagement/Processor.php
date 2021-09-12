@@ -78,6 +78,7 @@ class Processor {
 	}
 	
 	public function cancelPayment(OrderPaymentInterface $payment): OrderPaymentInterface {
+		$payment->save();
 		if (!$payment->getOrder()->hasInvoices()) {
 			if ($payment->getOrder()->isPaymentReview()) {
 				$payment->getOrder()
