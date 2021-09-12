@@ -64,6 +64,7 @@ class Processor {
 	
 	private function capturePayment(OrderPaymentInterface $payment, string $actualPayuTransactionState): OrderPaymentInterface {
 		$this->logger->info(sprintf("%s - Capture initial - Order [%s] - State [%s]", __METHOD__, $payment->getOrder()->getIncrementId(), $payment->getPayuTransactionState()));
+		$payment->save();
 		
 		if (null == $payment->getPayuTransactionState()
 			|| '' == $payment->getPayuTransactionState()
