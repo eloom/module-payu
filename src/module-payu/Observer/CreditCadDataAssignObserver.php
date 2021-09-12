@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -48,29 +48,29 @@ class CreditCadDataAssignObserver extends AbstractDataAssignObserver {
 	public function execute(Observer $observer) {
 		$data = $this->readDataArgument($observer);
 		
-		$requestData = $data->getData(PaymentInterface::KEY_ADDITIONAL_DATA);
-		if (!is_array($requestData)) {
+		$additionalData = $data->getData(PaymentInterface::KEY_ADDITIONAL_DATA);
+		if (!is_array($additionalData)) {
 			return;
 		}
-		if (!is_object($requestData)) {
-			$requestData = new DataObject($requestData ?: []);
+		if (!is_object($additionalData)) {
+			$additionalData = new DataObject($additionalData ?: []);
 		}
 		$paymentInfo = $this->readPaymentModelArgument($observer);
 		$paymentInfo->setAdditionalInformation('sessionId', $this->cookieManager->getCookie('PHPSESSID'));
 		$paymentInfo->setAdditionalInformation('userAgent', $this->httpHeader->getHttpUserAgent());
 		
-		$ccNumber = preg_replace('/[\-\s]+/', '', $requestData->getCcNumber());
+		$ccNumber = preg_replace('/[\-\s]+/', '', $additionalData->getCcNumber());
 		$paymentInfo->addData(
 			[
 				OrderPaymentPayUInterface::CC_NUMBER_ENC => $ccNumber,
-				OrderPaymentPayUInterface::CC_CID_ENC => $requestData->getCcCvv(),
-				OrderPaymentInterface::CC_TYPE => $requestData->getCcType(),
-				OrderPaymentInterface::CC_OWNER => $requestData->getCcOwner(),
+				OrderPaymentPayUInterface::CC_CID_ENC => $additionalData->getCcCvv(),
+				OrderPaymentInterface::CC_TYPE => $additionalData->getCcType(),
+				OrderPaymentInterface::CC_OWNER => $additionalData->getCcOwner(),
 				OrderPaymentInterface::CC_LAST_4 => substr($ccNumber, -4)
 			]
 		);
-		if ($requestData->getCcExpiry() && $requestData->getCcExpiry() != '') {
-			$expiry = explode("/", trim($requestData->getCcExpiry()));
+		if ($additionalData->getCcExpiry() && $additionalData->getCcExpiry() != '') {
+			$expiry = explode("/", trim($additionalData->getCcExpiry()));
 			$month = trim($expiry[0]);
 			$year = trim($expiry[1]);
 			if (strlen($year) == 2) {
@@ -82,16 +82,16 @@ class CreditCadDataAssignObserver extends AbstractDataAssignObserver {
 			]);
 		}
 		
-		if ($requestData->getCcInstallments()) {
-			$arrayex = explode('-', $requestData->getCcInstallments());
+		if ($additionalData->getCcInstallments()) {
+			$arrayex = explode('-', $additionalData->getCcInstallments());
 			if (isset($arrayex[0])) {
 				$paymentInfo->setAdditionalInformation('installments', intval($arrayex[0]));
 				$paymentInfo->setAdditionalInformation('installmentAmount', floatval($arrayex[1]));
 			}
 		}
-		$paymentInfo->setAdditionalInformation('ccBank', $requestData->getCcBank());
+		$paymentInfo->setAdditionalInformation('ccBank', $additionalData->getCcBank());
 		$paymentInfo->setAdditionalInformation('activePaymentToken', false);
-		if ($requestData->getIsActivePaymentTokenEnabler()) {
+		if ($additionalData->getIsActivePaymentTokenEnabler()) {
 			$paymentInfo->setAdditionalInformation('activePaymentToken', true);
 		}
 	}

@@ -17,7 +17,7 @@
 	</route>
 	
 	<route url="/V1/eloom/payu/banks" method="POST">
-		<service class="Eloom\PayU\Api\BanksInterface" method="listBanks"/>
+		<service class="Eloom\PayU\Api\BanksOfMexicoInterface" method="listBanks"/>
 		<resources>
 			<resource ref="anonymous"/>
 		</resources>

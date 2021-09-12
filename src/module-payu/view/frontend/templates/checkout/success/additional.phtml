@@ -18,11 +18,20 @@ $isCc = $block->isCc();
 			<dt class="barcode"><?php echo $barCode; ?></dt>
 		<?php endif;?>
 		
-		<?php if($htmlLink = $block->getHtmlLink()):?>
+		<?php if($htmlLink = $block->getPaymentLink()):?>
 			<dd><?php echo __('Voucher Link'); ?></dd>
 			<dt class="link">
 				<a href="<?php echo $block->escapeUrl($htmlLink); ?>" target="_blank">
 					<?php echo $block->escapeHtml(__('Click here to open the Link')); ?>
+				</a>
+			</dt>
+		<?php endif;?>
+		
+		<?php if($htmlLink = $block->getBankUrl()):?>
+			<dd><?php echo __('Bank'); ?></dd>
+			<dt class="bank-url">
+				<a href="<?php echo $block->escapeUrl($htmlLink); ?>" target="_blank">
+					<?php echo $block->escapeHtml(__('Bank Action')); ?>
 				</a>
 			</dt>
 		<?php endif;?>

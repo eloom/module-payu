@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -21,15 +21,15 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 
 class InstallSchema implements InstallSchemaInterface {
-
+	
 	public function install(SchemaSetupInterface $setup, ModuleContextInterface $context) {
 		$setup->startSetup();
 		$connection = $setup->getConnection();
-
+		
 		$tables = ['quote_address', 'sales_order', 'sales_invoice'];
 		foreach ($tables as $t) {
 			$table = $setup->getTable($t);
-
+			
 			if ($connection->tableColumnExists($table, OrderPaymentPayUInterface::PAYU_DISCOUNT_AMOUNT) === false) {
 				$connection->addColumn($table,
 					OrderPaymentPayUInterface::PAYU_DISCOUNT_AMOUNT,
@@ -50,7 +50,7 @@ class InstallSchema implements InstallSchemaInterface {
 					]
 				);
 			}
-
+			
 			if ($connection->tableColumnExists($table, OrderPaymentPayUInterface::PAYU_INTEREST_AMOUNT) === false) {
 				$connection->addColumn($table,
 					OrderPaymentPayUInterface::PAYU_INTEREST_AMOUNT,
@@ -72,7 +72,7 @@ class InstallSchema implements InstallSchemaInterface {
 				);
 			}
 		}
-
+		
 		$table = $setup->getTable('sales_order_payment');
 		if ($connection->tableColumnExists($table, OrderPaymentPayUInterface::TRANSACTION_STATE) === false) {
 			$connection->addColumn($table,
@@ -84,8 +84,8 @@ class InstallSchema implements InstallSchemaInterface {
 				]
 			);
 		}
-
-		if(!$setup->tableExists('eloom_payu_notification')) {
+		
+		if (!$setup->tableExists('eloom_payu_notification')) {
 			$table = $setup->getConnection()->newTable($setup->getTable('eloom_payu_notification'))
 				->addColumn(
 					'entity_id',
@@ -94,7 +94,7 @@ class InstallSchema implements InstallSchemaInterface {
 					[
 						'identity' => true,
 						'nullable' => false,
-						'primary'  => true,
+						'primary' => true,
 						'unsigned' => true,
 					],
 					'Entity ID'
@@ -110,7 +110,7 @@ class InstallSchema implements InstallSchemaInterface {
 				);
 			$setup->getConnection()->createTable($table);
 		}
-
+		
 		$setup->endSetup();
 	}
 }

@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Eloom\PayU\Block\Checkout\Success;
 
 use Magento\Checkout\Model\Session;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Sales\Model\OrderFactory;
 
@@ -37,10 +38,10 @@ class Additional extends \Magento\Framework\View\Element\Template {
 		'eloom_payments_payu_rapipago'
 	];
 	
-	public function __construct(Context $context,
-	                            Session $checkoutSession,
+	public function __construct(Context      $context,
+	                            Session      $checkoutSession,
 	                            OrderFactory $orderFactory,
-	                            array $data = []) {
+	                            array        $data = []) {
 		parent::__construct($context, $data);
 		$this->checkoutSession = $checkoutSession;
 		$this->orderFactory = $orderFactory;
@@ -84,10 +85,19 @@ class Additional extends \Magento\Framework\View\Element\Template {
 		return false;
 	}
 	
-	public function getHtmlLink() {
-		$paymentLink = $this->getPayment()->getAdditionalInformation('paymentLink');
-		if ($paymentLink) {
-			return $paymentLink;
+	public function getPaymentLink() {
+		$link = $this->getPayment()->getAdditionalInformation('paymentLink');
+		if ($link) {
+			return $link;
+		}
+		
+		return null;
+	}
+	
+	public function getBankUrl() {
+		$url = $this->getPayment()->getAdditionalInformation('bankUrl');
+		if ($url) {
+			return $url;
 		}
 		
 		return null;
@@ -155,7 +165,7 @@ class Additional extends \Magento\Framework\View\Element\Template {
 	}
 	
 	public function getFormattedInstallmentAmount() {
-		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$objectManager = ObjectManager::getInstance();
 		$priceCurrency = $objectManager->create('Magento\Framework\Pricing\PriceCurrencyInterface');
 		
 		$installmentAmount = $this->getPayment()->getAdditionalInformation('installmentAmount');

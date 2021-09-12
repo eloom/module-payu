@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -64,7 +64,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 	
 	const DNI_TYPE = 'dniType';
 	
-	const CNPJ = 'cnpj';
+	const CNPJ = 'docs.eloom.tech/payu-latam';
 	
 	const BIRTH_DATE = 'birthdate';
 	
@@ -99,7 +99,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 	protected $logger;
 	
 	public function __construct(ConfigInterface $config,
-	                            UrlInterface $urlBuilder,
+	                            UrlInterface    $urlBuilder,
 	                            OrderRepository $orderRepository,
 	                            LoggerInterface $logger) {
 		$this->config = $config;
@@ -237,10 +237,10 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			],
 		];
 		if ($country->isArgentina() || $country->isColombia()) {
-			if($country->isArgentina()) {
+			if ($country->isArgentina()) {
 				$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
 			} else {
-				if(null != $order->getBillingAddress()->getDnitype()) {
+				if (null != $order->getBillingAddress()->getDnitype()) {
 					$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
 				}
 			}

@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -54,6 +54,7 @@ class CcRequestValidator extends \Magento\Payment\Gateway\Validator\AbstractVali
 			$factory = $this->validatorHandlerFactory->create();
 			$result = $factory->validate($taxvat);
 		} catch (TaxvatException $ex) {
+			$this->logger->critical($ex->getMessage());
 			$isValid = false;
 			array_push($fails, __($ex->getMessage()));
 		}

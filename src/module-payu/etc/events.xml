@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
 	<event name="sales_model_service_quote_submit_before">
-		<observer name="eloom_payu_total" instance="Eloom\PayU\Observer\Frontend\Quote\Address\QuoteAddressToOrderObserver"/>
+		<observer name="eloom_payu_total"
+		          instance="Eloom\PayU\Observer\Frontend\Quote\Address\QuoteAddressToOrderObserver"/>
 	</event>
-
+	
 	<event name="payment_method_assign_data_eloom_payments_payu_cc">
-		<observer name="eloom_payu_cc_gateway_data_assign" instance="Eloom\PayU\Observer\CreditCadDataAssignObserver"/>
+		<observer name="eloom_payments_payu_cc_gateway_data_assign"
+		          instance="Eloom\PayU\Observer\CreditCadDataAssignObserver"/>
 	</event>
 </config>

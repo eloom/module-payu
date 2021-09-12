@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace Eloom\PayU\Model;
 
-use Eloom\PayU\Api\BanksInterface;
+use Eloom\PayU\Api\BanksOfMexicoInterface;
 use Eloom\PayU\Block\Adminhtml\Config\Source\Banks as BanksList;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Serialize\Serializer\Json;
 
-class Banks implements BanksInterface {
+class BanksOfMexico implements BanksOfMexicoInterface {
 	
 	private $serializer;
 	

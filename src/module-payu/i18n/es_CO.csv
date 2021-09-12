@@ -18,7 +18,7 @@
 "Contact your Account Manager or PayU Support","Comuníquese con su Administrador de Cuenta o con el Soporte de PayU."
 
 # -- D
-"Discount first installment","Descuento en efectivo"
+"Discount first installment","Descuento en la primera cuota"
 "Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
 "Eloom PayU Wrong transaction status.","El sistema no obtuvo un estado válido de transacción de PayU."
 "Documentation","Documentação"
@@ -31,7 +31,7 @@
 # -- H
 "here","aquí"
 "Holder Another","La tarjeta pertenece a otra persona"
-"Holder dniNumber","Cédula de Ciudadanía"
+"Holder dniNumber","Número de documento"
 "Holder Phone","Teléfono/Móvil"
 
 # -- I
@@ -91,7 +91,7 @@
 "Transaction.State.PENDING","Su compra está pendiente de pago."
 "Transaction.State.SUBMITTED","Transacción enviada a la entidad financiera y por alguna razón no terminó el procesamiento."
 "Transaction.State.CANCELLED","Su compra ha sido rechazada."
-"Taxvat is required","El campo Cédula de Ciudadanía no está presente o no está lleno."
+"Taxvat is required","El campo Número de documento no está presente o no está lleno."
 " to learn more."," para más informaciones."
 
 # -- U
@@ -145,7 +145,7 @@
 "ERROR_FIXING_AND_REVERSING", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
 "ERROR_FIXING_INCOMPLETE_DATA", "Clínica de transacciones: Código de operación interno. Solo aplicable a la API de consulta."
 "DECLINED_TEST_MODE_NOT_ALLOWED","Esta cuenta no está autorizada para transacción de prueba."
-"Parameter [payerDNI] is required.","Se requiere Cédula de Ciudadanía. Verifique la información de su cuenta para obtener la información correcta de Documento de Cédula de Ciudadanía."
+"Parameter [payerDNI] is required.","Se requiere Número de documento. Verifique la información de su cuenta para obtener la información correcta de Documento de Número de documento."
 "The credit card expiration date is not valid","La fecha de vencimiento de la tarjeta de crédito no es válida."
 "ERROR","Hubo un error al procesar su transacción. Vuelva a intentarlo o elija otro método de pago."
 

@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -18,7 +18,7 @@ namespace Eloom\PayU\Connection;
 use GuzzleHttp\Client;
 
 class Json {
-
+	
 	/**
 	 * @param $url
 	 * @param $data
@@ -27,11 +27,10 @@ class Json {
 	public function get($url, $data, $headers) {
 		$client = new Client();
 		$response = $client->get($url, [
-			'headers' => array_merge(array('Content-Type' => 'application/json',
-				'Accept' => 'application/json'), $headers),
+			'headers' => array_merge(['Content-Type' => 'application/json', 'Accept' => 'application/json'], $headers),
 			'query' => $data
 		]);
-
+		
 		return $response->getBody()->getContents();
 	}
 }

@@ -86,6 +86,16 @@ $paymentTitle = $block->getMethod()->getConfigData('title', $order->getStoreId()
 			</td>
 		</tr>
 	<?php endif;?>
+	<?php if($link = $block->getBankUrl()):?>
+		<tr>
+			<th><?= __('Bank') ?></th>
+			<td class="bank-url">
+				<a class="action-default" href="<?= $link; ?>" target="_blank" title="<?= __('Bank Action') ?>">
+					<?= __('Bank Action') ?>
+				</a>
+			</td>
+		</tr>
+	<?php endif;?>
 </table>
 
 <?php if ($specificInfo) : ?>

@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -17,12 +17,10 @@ namespace Eloom\PayU\Gateway\Http;
 use Eloom\PayU\Gateway\Config\Config;
 use Eloom\PayU\Gateway\PayU\Enumeration\Country;
 use Eloom\PayU\Resources\Builder\Payment;
-use Magento\Payment\Gateway\ConfigInterface;
 use Magento\Payment\Gateway\Http\TransferBuilder;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
-use GuzzleHttp\Client;
 
 class PaymentsTransferFactory implements TransferFactoryInterface {
 
@@ -32,7 +30,9 @@ class PaymentsTransferFactory implements TransferFactoryInterface {
 
 	private $logger;
 
-	public function __construct(TransferBuilder $transferBuilder, Config $config, Logger $logger) {
+	public function __construct(TransferBuilder $transferBuilder,
+	                            Config $config,
+	                            Logger $logger) {
 		$this->transferBuilder = $transferBuilder;
 		$this->config = $config;
 		$this->logger = $logger;

@@ -6,7 +6,7 @@
 * @category     Ã©lOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.0
+* @version      1.0.1
 * @license      https://eloom.tech/license
 *
 */
@@ -64,6 +64,7 @@ class PaymentMethod extends AbstractMultiton {
 		new static('baloto', 'BALOTO');
 		new static('efecty', 'EFECTY');
 		new static('sured', 'SURED');
+		new static('pse', 'PSE');
 		
 		/**
 		 * MX
