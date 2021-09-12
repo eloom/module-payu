@@ -78,24 +78,25 @@ class Processor {
 	}
 	
 	public function cancelPayment(OrderPaymentInterface $payment): OrderPaymentInterface {
-		$order = $payment->getOrder();
-		if (!$order->hasInvoices()) {
-			if ($order->isPaymentReview()) {
-				$order->setState(Order::STATE_NEW);
-				$order->setStatus($this->orderConfig->getStateDefaultStatus(Order::STATE_NEW));
+		if (!$payment->getOrder()->hasInvoices()) {
+			if ($payment->getOrder()->isPaymentReview()) {
+				$payment->getOrder()
+					->setState(Order::STATE_NEW)
+					->setStatus($this->orderConfig->getStateDefaultStatus(Order::STATE_NEW));
 			}
-			if ($order->canCancel()) {
-				$this->logger->info(sprintf("%s - Order [%s] has been canceled.", __METHOD__, $order->getIncrementId()));
+			if ($payment->getOrder()->canCancel()) {
+				$this->logger->info(sprintf("%s - Order [%s] has been canceled.", __METHOD__, $payment->getOrder()->getIncrementId()));
 				$message = __('Canceled order online') . ' ' . __('Transaction ID: "%1"', $payment->getTransactionId());
 				
-				$order->setActionFlag(Order::ACTION_FLAG_CANCEL, true);
-				$order->addStatusHistoryComment($message, false)->setIsCustomerNotified(true);
-				$order->cancel()->save();
+				$payment->getOrder()
+					->setActionFlag(Order::ACTION_FLAG_CANCEL, true)
+					->addStatusHistoryComment($message, false)->setIsCustomerNotified(true);
+				$payment->getOrder()->cancel()->save();
 			} else {
-				$this->logger->info(sprintf("%s - Order [%s] can not be canceled.", __METHOD__, $order->getIncrementId()));
+				$this->logger->info(sprintf("%s - Order [%s] can not be canceled.", __METHOD__, $payment->getOrder()->getIncrementId()));
 			}
 		} else {
-			$this->logger->info(sprintf("%s - Order [%s] has already an invoice so cannot be canceled.", __METHOD__, $order->getIncrementId()));
+			$this->logger->info(sprintf("%s - Order [%s] has already an invoice so cannot be canceled.", __METHOD__, $payment->getOrder()->getIncrementId()));
 		}
 		
 		return $payment;
