@@ -32,7 +32,7 @@
 			<label>Icon</label>
 			<source_model>Eloom\Payment\Block\Adminhtml\Config\Source\CreditCardIcons</source_model>
 			<config_path>payment/eloom_payments_payu_cc/icon</config_path>
-			<comment><![CDATA[More info <a href="https://docs.eloom.tech/payu-latam/customization" target="_blank">here</a>.]]></comment>
+			<comment><![CDATA[More info <a href="https://docs.eloom.tech/payment/payu-latam/customization" target="_blank">here</a>.]]></comment>
 		</field>
 		<field id="installments" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
 			<label><![CDATA[<strong>Installments options</strong>]]></label>
@@ -61,7 +61,7 @@
 			<frontend_model>Eloom\PayU\Block\Adminhtml\Form\Field\Installments</frontend_model>
 			<backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
 			<config_path>payment/eloom_payments_payu_cc/installment_ranges</config_path>
-			<comment><![CDATA[More info <a href="https://docs.eloom.tech/payu-latam/configuration" target="_blank">here</a>.]]></comment>
+			<comment><![CDATA[More info <a href="https://docs.eloom.tech/payment/payu-latam/configuration" target="_blank">here</a>.]]></comment>
 		</field>
 		
 		<field id="min_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
