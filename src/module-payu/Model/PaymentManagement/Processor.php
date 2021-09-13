@@ -35,10 +35,10 @@ class Processor {
 	 */
 	protected $orderConfig;
 	
-	public function __construct(LoggerInterface $logger,
+	public function __construct(LoggerInterface         $logger,
 	                            PaymentDetailsOperation $paymentDetailsOperation,
-	                            SearchCriteriaBuilder $searchCriteriaBuilder,
-	                            OrderConfig $orderConfig) {
+	                            SearchCriteriaBuilder   $searchCriteriaBuilder,
+	                            OrderConfig             $orderConfig) {
 		
 		$this->logger = $logger;
 		$this->paymentDetailsOperation = $paymentDetailsOperation;

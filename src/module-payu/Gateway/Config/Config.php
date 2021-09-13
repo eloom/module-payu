@@ -21,42 +21,44 @@ use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Store\Model\ScopeInterface;
 
 class Config extends \Magento\Payment\Gateway\Config\Config {
-
+	
 	const KEY_ACTIVE = 'active';
-
+	
 	const KEY_ENVIRONMENT = 'environment';
-
+	
 	/**
 	 * Merchant ID
 	 */
 	const KEY_MERCHANT_ID = 'merchant_id';
-
+	
 	/**
 	 * API Key
 	 */
 	const KEY_API_KEY = 'api_key';
-
+	
 	/**
 	 * Account ID
 	 */
 	const KEY_ACCOUNT_ID = 'account_id';
-
+	
 	/**
 	 * Public Key
 	 */
 	const KEY_PUBLIC_KEY = 'public_key';
-
+	
 	/**
 	 * Login API
 	 */
 	const KEY_LOGIN_API = 'login_api';
-
+	
+	const KEY_INVOICE = 'invoice';
+	
 	const INTERESTS = 'interests';
-
+	
 	private $scopeConfig;
-
+	
 	private $serializer;
-
+	
 	/**
 	 *
 	 * @param ScopeConfigInterface $scopeConfig
@@ -64,15 +66,15 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	 * @param string $pathPattern
 	 */
 	public function __construct(ScopeConfigInterface $scopeConfig,
-	                            $methodCode = null,
-	                            $pathPattern = self::DEFAULT_PATH_PATTERN,
-	                            Json $serializer = null) {
+	                                                 $methodCode = null,
+	                                                 $pathPattern = self::DEFAULT_PATH_PATTERN,
+	                            Json                 $serializer = null) {
 		parent::__construct($scopeConfig, $methodCode, $pathPattern);
-
+		
 		$this->serializer = $serializer ?: ObjectManager::getInstance()->get(Json::class);
 		$this->scopeConfig = $scopeConfig;
 	}
-
+	
 	/**
 	 * Gets Payment configuration status.
 	 *
@@ -82,7 +84,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	public function isActive($storeId = null) {
 		return (bool)$this->getValue(self::KEY_ACTIVE, $storeId);
 	}
-
+	
 	/**
 	 * Gets value of configured environment.
 	 * Possible values: production or sandbox.
@@ -93,49 +95,53 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	public function getEnvironment($storeId = null) {
 		return $this->getValue(self::KEY_ENVIRONMENT, $storeId);
 	}
-
+	
 	public function isInProduction() {
 		return (bool)($this->getEnvironment() == Environment::PRODUCTION);
 	}
-
+	
 	public function isInSandbox() {
 		return (bool)($this->getEnvironment() == Environment::SANDBOX);
 	}
-
+	
 	public function getMerchantId($storeId = null): string {
 		$v = $this->getValue(self::KEY_MERCHANT_ID, $storeId);
 		return (!empty($v) ? trim($v) : '');
 	}
-
+	
 	public function getApiKey($storeId = null): string {
 		$v = $this->getValue(self::KEY_API_KEY, $storeId);
 		return (!empty($v) ? trim($v) : '');
 	}
-
+	
 	public function getAccountId($storeId = null): string {
 		$v = $this->getValue(self::KEY_ACCOUNT_ID, $storeId);
 		return (!empty($v) ? trim($v) : '');
 	}
-
+	
 	public function getLoginApi($storeId = null): string {
 		$v = $this->getValue(self::KEY_LOGIN_API, $storeId);
 		return (!empty($v) ? trim($v) : '');
 	}
-
+	
 	public function getPublicKey($storeId = null): string {
 		$v = $this->getValue(self::KEY_PUBLIC_KEY, $storeId);
 		return (!empty($v) ? trim($v) : '');
 	}
-
+	
 	public function getInterests($storeId = null) {
 		return $this->getValue(self::INTERESTS, $storeId);
 	}
-
+	
 	public function isPayerPayInterests($storeId = null) {
 		return ($this->getInterests($storeId) == 'P');
 	}
-
+	
 	public function getStoreCurrency($storeId = null) {
 		return $this->scopeConfig->getValue('currency/options/default', ScopeInterface::SCOPE_STORE, $storeId);
+	}
+	
+	public function isInvoiceCreate($storeId = null) {
+		return (bool)$this->getValue(self::KEY_INVOICE, $storeId);
 	}
 }

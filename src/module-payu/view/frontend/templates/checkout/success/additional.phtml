@@ -30,7 +30,7 @@ $isCc = $block->isCc();
 		<?php if($htmlLink = $block->getBankUrl()):?>
 			<dd><?php echo __('Bank'); ?></dd>
 			<dt class="bank-url">
-				<a href="<?php echo $block->escapeUrl($htmlLink); ?>" target="_blank">
+				<a href="<?php echo $block->escapeUrl($htmlLink); ?>">
 					<?php echo $block->escapeHtml(__('Bank Action')); ?>
 				</a>
 			</dt>

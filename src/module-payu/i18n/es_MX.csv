@@ -27,6 +27,7 @@
 "Error","Error"
 
 # -- G
+"Generate invoice when confirming payment?","¿Generar factura al confirmar el pago?"
 
 # -- H
 "here","aquí"
@@ -43,6 +44,7 @@
 "Interest options","Opciones de interés"
 "<strong>Installments options</strong>","<strong>Opciones de cuotas</strong>"
 "Issuing bank","Banco emisor"
+"Invoice options","Opciones de factura"
 
 # -- L
 "Last Credit Card Number","Tarjeta"

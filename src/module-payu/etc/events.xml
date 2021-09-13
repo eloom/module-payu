@@ -10,4 +10,14 @@
 		<observer name="eloom_payments_payu_cc_gateway_data_assign"
 		          instance="Eloom\PayU\Observer\CreditCadDataAssignObserver"/>
 	</event>
+	
+	<event name="sales_order_save_after">
+		<observer name="eloom_payu_sales_order_save_after"
+		          instance="Eloom\PayU\Observer\OrderSaveAfter" />
+	</event>
+	
+	<event name="eloom_payu_invoice_create">
+		<observer name="eloom_payu_invoice_create"
+		          instance="Eloom\PayU\Observer\InvoiceCreate"/>
+	</event>
 </config>
