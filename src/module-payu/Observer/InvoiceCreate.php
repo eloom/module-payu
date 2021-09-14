@@ -89,7 +89,8 @@ class InvoiceCreate implements ObserverInterface {
 				try {
 					$this->invoiceSender->send($invoice);
 				} catch (\Exception $e) {
-					$this->messageManager->addError(__('Error on send the invoice email for order #%1.', $orderId));
+					$this->logger->critical(sprintf("%s - Exception: %s", __METHOD__, $e->getMessage()));
+					$this->logger->critical(sprintf("%s - Exception: %s", __METHOD__, $e->getTraceAsString()));
 				}
 				
 				$order->addStatusHistoryComment(__("New Invoice for Order #%1.", $orderId))
