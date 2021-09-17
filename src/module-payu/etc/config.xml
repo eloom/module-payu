@@ -8,6 +8,7 @@
 				<debug>1</debug>
 				<order_status>pending</order_status>
 				<environment>production</environment>
+				<test>0</test>
 				<invoice>0</invoice>
 			</eloom_payments_payu>
 			<eloom_payments_payu_cc>

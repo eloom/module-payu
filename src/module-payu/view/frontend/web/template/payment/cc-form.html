@@ -169,6 +169,17 @@
 					<!-- ko i18n: paymentErrors() --><!-- /ko -->
 				</p>
 				<span data-bind="attr: {class: injectPaymentBehavior()}"></span>
+
+				<!-- ko if: (isInSandboxMode())-->
+					<p class="message message-notice notice">
+						<!-- ko i18n: 'Store in Sandbox mode. Orders with no commercial value.'--><!-- /ko -->
+					</p>
+				<!-- /ko -->
+				<!-- ko if: (isTransactionInTestMode())-->
+					<p class="message message-notice notice">
+						<!-- ko i18n: 'Transaction in test mode. Orders with no commercial value.'--><!-- /ko -->
+					</p>
+				<!-- /ko -->
 			</fieldset>
 		</form>
 

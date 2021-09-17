@@ -26,6 +26,8 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	
 	const KEY_ENVIRONMENT = 'environment';
 	
+	const KEY_TEST = 'test';
+	
 	/**
 	 * Merchant ID
 	 */
@@ -96,12 +98,16 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 		return $this->getValue(self::KEY_ENVIRONMENT, $storeId);
 	}
 	
-	public function isInProduction() {
-		return (bool)($this->getEnvironment() == Environment::PRODUCTION);
+	public function isInProduction($storeId = null) {
+		return (bool)($this->getEnvironment($storeId) == Environment::PRODUCTION);
 	}
 	
-	public function isInSandbox() {
-		return (bool)($this->getEnvironment() == Environment::SANDBOX);
+	public function isInSandbox($storeId = null) {
+		return (bool)($this->getEnvironment($storeId) == Environment::SANDBOX);
+	}
+	
+	public function isTransactionInTestMode($storeId = null) {
+		return (bool)$this->getValue(self::KEY_TEST, $storeId);
 	}
 	
 	public function getMerchantId($storeId = null): string {

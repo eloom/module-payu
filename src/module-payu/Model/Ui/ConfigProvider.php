@@ -50,6 +50,8 @@ class ConfigProvider implements ConfigProviderInterface {
 			'payment' => [
 				self::CODE => [
 					'language' => Country::memberByKey($currency)->getLanguage(),
+					'isInSandboxMode' => $this->config->isInSandbox($storeId),
+					'isTransactionInTestMode' => $this->config->isTransactionInTestMode($storeId),
 					'url' => [
 						'logo' => $this->assetRepo->getUrl('Eloom_PayU::images/logo.png')
 					]

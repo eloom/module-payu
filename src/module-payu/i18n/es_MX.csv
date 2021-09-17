@@ -45,6 +45,7 @@
 "Issuing bank","Banco emisor"
 "Invoice options","Opciones de factura"
 "Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
+"Integration options","Opciones de integración"
 
 # -- L
 "Last Credit Card Number","Tarjeta"
@@ -84,6 +85,7 @@
 "Sending information to the payment system.","Enviar información al sistema de pago."
 "Syncronize","Sincronizar"
 "Stored Cards","Tarjeta de crédito almacenada"
+"Store in Sandbox mode. Orders with no commercial value.","Tienda en modo Sandbox. Pedidos sin valor comercial."
 
 # -- T
 "Transaction State","Estado de la transacción"
@@ -96,6 +98,8 @@
 "Transaction.State.CANCELLED","Su compra ha sido rechazada."
 "Taxvat is required","El campo Número de documento no está presente o no está lleno."
 " to learn more."," para más informaciones."
+"Transaction in test mode?","¿Transacción en modo de prueba?"
+"Transaction in test mode. Orders with no commercial value.","Transacción em modo test. Pedidos sin valor comercial."
 
 # -- U
 

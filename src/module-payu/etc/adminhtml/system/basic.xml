@@ -5,19 +5,28 @@
 		
 		<field id="configuration_details" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
 			<label>Configuration Details</label>
-			<comment>https://docs.eloom.tech/payu-latam</comment>
+			<comment>https://docs.eloom.tech/payment/payu-latam</comment>
 			<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset\Hint</frontend_model>
 		</field>
 		
-		<field id="environment" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+		<field id="integration" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Integration options</label>
+			<frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+		</field>
+		<field id="environment" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
 			<label>Environment</label>
 			<source_model>Eloom\PayU\Block\Adminhtml\Config\Source\Environment</source_model>
 			<config_path>payment/eloom_payments_payu/environment</config_path>
 		</field>
+		<field id="test" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Transaction in test mode?</label>
+			<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+			<config_path>payment/eloom_payments_payu/test</config_path>
+		</field>
+		
 		<field id="credentials" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
 			<label>Account information</label>
 			<frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
-			<validate>required-entry</validate>
 		</field>
 		<field id="merchant_id" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="0">
 			<label>Merchant ID</label>
@@ -46,7 +55,7 @@
 		</field>
 		
 		<field id="invoice_header" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
-			<label><![CDATA[Invoice options]]></label>
+			<label>Invoice options</label>
 			<frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
 		</field>
 		<field id="invoice" translate="label" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="0">
