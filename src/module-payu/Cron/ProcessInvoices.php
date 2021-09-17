@@ -17,6 +17,7 @@ namespace Eloom\PayU\Cron;
 use Eloom\PayU\Model\InvoiceFactory;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Event\ManagerInterface;
+use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Payment\Repository;
 use Magento\Sales\Model\OrderFactory;
 use Psr\Log\LoggerInterface;
@@ -53,12 +54,13 @@ class ProcessInvoices {
 			foreach ($collection as $invoice) {
 				try {
 					$order = $this->orderFactory->create()->loadByIncrementId($invoice->getIncrementId());
-					
-					$this->eventManager->dispatch('eloom_payu_invoice_create', [
-							'store_id' => $order->getStoreId(),
-							'order_id' => $order->getId()
-						]
-					);
+					if (Order::STATE_PROCESSING == $order->getState()) {
+						$this->eventManager->dispatch('eloom_payu_invoice_create', [
+								'store_id' => $order->getStoreId(),
+								'order_id' => $order->getId()
+							]
+						);
+					}
 					
 					$invoice->delete();
 				} catch (\Exception $e) {

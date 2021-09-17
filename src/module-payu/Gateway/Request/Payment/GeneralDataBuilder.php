@@ -51,6 +51,7 @@ class GeneralDataBuilder implements BuilderInterface {
 			self::LANGUAGE => Country::memberByKey($currency)->getLanguage(),
 			self::COMMAND => CommandInterface::PAYMENT_SUBMIT_TRANSACTION,
 			self::TEST => $this->config->isInSandbox($storeId),
+			//self::TEST => false,
 			'merchant' => [
 				'apiKey' => $this->config->getApiKey($storeId),
 				'apiLogin' => $this->config->getLoginApi($storeId)

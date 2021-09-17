@@ -88,7 +88,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal {
 	}
 	
 	public function getLabel() {
-		return __('Discount first installment');
+		return __('Discount');
 	}
 	
 	protected function clearValues(Total $total) {

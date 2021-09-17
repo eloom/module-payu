@@ -21,7 +21,7 @@
 															<item name="sortOrder" xsi:type="string">29</item>
 															<item name="config" xsi:type="array">
 																<item name="template" xsi:type="string">Eloom_PayU/checkout/cart/totals/discount</item>
-																<item name="title" xsi:type="string" translate="true">Discount first installment</item>
+																<item name="title" xsi:type="string" translate="true">Discount</item>
 															</item>
 														</item>
 														<item name="eloom_interest" xsi:type="array">

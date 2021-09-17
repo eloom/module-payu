@@ -19,12 +19,11 @@
 
 # -- D
 "Discount first installment","Descuento en la primera cuota"
-"Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
-"Eloom PayU Wrong transaction status.","El sistema no obtuvo un estado válido de transacción de PayU."
 "Documentation","Documentação"
 
 # -- E
 "Error","Error"
+"Eloom PayU Wrong transaction status.","El sistema no obtuvo un estado válido de transacción de PayU."
 
 # -- G
 "Generate invoice when confirming payment?","¿Generar factura al confirmar el pago?"
@@ -45,6 +44,7 @@
 "<strong>Installments options</strong>","<strong>Opciones de cuotas</strong>"
 "Issuing bank","Banco emisor"
 "Invoice options","Opciones de factura"
+"Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
 
 # -- L
 "Last Credit Card Number","Tarjeta"

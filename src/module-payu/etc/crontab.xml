@@ -15,7 +15,7 @@
 		<job name="eloom_payment_payu_notifications"
 		     instance="Eloom\PayU\Cron\ProcessNotifications"
 		     method="execute">
-			<schedule>0/5 * * * *</schedule>
+			<schedule>* * * * *</schedule>
 		</job>
 		<job name="eloom_payment_payu_invoices"
 		     instance="Eloom\PayU\Cron\ProcessInvoices"
