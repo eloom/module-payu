@@ -99,7 +99,7 @@
 "Transaction.State.CANCELLED","Cancelada"
 "Taxvat is required","O campo CPF / CNPJ não está presente ou não foi preenchido."
 " to learn more."," para saber mais."
-"Transaction in test mode?","Transação em modo test?"
+"Transaction in test mode?","Transação em modo teste?"
 "Transaction in test mode. Orders with no commercial value.","Transação em modo test. Pedidos sem valor comercial."
 
 # -- U
