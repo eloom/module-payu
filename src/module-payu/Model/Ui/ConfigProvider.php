@@ -19,6 +19,8 @@ use Eloom\PayU\Gateway\PayU\Enumeration\Country;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Framework\View\Asset\Repository;
+use Magento\Framework\Stdlib\CookieManagerInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 class ConfigProvider implements ConfigProviderInterface {
 
@@ -29,13 +31,21 @@ class ConfigProvider implements ConfigProviderInterface {
 	private $config;
 
 	private $session;
-
+	
+	private $encryptor;
+	
+	private $cookieManager;
+	
 	public function __construct(Repository $assetRepo,
 	                            SessionManagerInterface $session,
-	                            Config $config) {
+	                            Config $config,
+	                            EncryptorInterface      $encryptor,
+	                            CookieManagerInterface  $cookieManager) {
 		$this->assetRepo = $assetRepo;
 		$this->session = $session;
 		$this->config = $config;
+		$this->encryptor = $encryptor;
+		$this->cookieManager = $cookieManager;
 	}
 
 	public function getCode() {
@@ -45,13 +55,15 @@ class ConfigProvider implements ConfigProviderInterface {
 	public function getConfig() {
 		$storeId = $this->session->getStoreId();
 		$currency = $this->config->getStoreCurrency($storeId);
-
+		$sessionId = $this->cookieManager->getCookie('PHPSESSID');
+		
 		return [
 			'payment' => [
 				self::CODE => [
 					'language' => Country::memberByKey($currency)->getLanguage(),
 					'isInSandboxMode' => $this->config->isInSandbox($storeId),
 					'isTransactionInTestMode' => $this->config->isTransactionInTestMode($storeId),
+					'deviceSessionId' => md5($sessionId . microtime()),
 					'url' => [
 						'logo' => $this->assetRepo->getUrl('Eloom_PayU::images/logo.png')
 					]

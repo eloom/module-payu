@@ -6,6 +6,14 @@
 			<values>
 				<value id="payu_gateway" type="host">gateway.payulatam.com</value>
 				<value id="payu_gateway_sandbox" type="host">sandbox.api.payulatam.com</value>
+				<value id="pagosonline_maf" type="host">maf.pagosonline.net</value>
+				<value id="fraudvault_devicefingerprinting" type="host">devicefingerprinting.fraudvault.com</value>
+			</values>
+		</policy>
+		<policy id="connect-src">
+			<values>
+				<value id="pagosonline_maf" type="host">maf.pagosonline.net</value>
+				<value id="fraudvault_devicefingerprinting" type="host">devicefingerprinting.fraudvault.com</value>
 			</values>
 		</policy>
 	</policies>

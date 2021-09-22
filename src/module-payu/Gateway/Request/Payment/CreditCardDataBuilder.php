@@ -42,6 +42,8 @@ class CreditCardDataBuilder implements BuilderInterface {
 	
 	const USER_AGENT = 'userAgent';
 	
+	const DEVICE_SESSION_ID = 'deviceSessionId';
+	
 	private $ccConfig;
 	
 	public function __construct(CcConfig $ccConfig) {
@@ -86,6 +88,7 @@ class CreditCardDataBuilder implements BuilderInterface {
 			self::PAYMENT_METHOD => PaymentMethod::memberByKey($payment->getCcType())->getCode(),
 			self::COOKIE => $payment->getAdditionalInformation('sessionId'),
 			self::USER_AGENT => $payment->getAdditionalInformation('userAgent'),
+			self::DEVICE_SESSION_ID => $payment->getAdditionalInformation('deviceSessionId'),
 			'extraParameters' => [
 				'INSTALLMENTS_NUMBER' => $payment->getAdditionalInformation('installments')
 			]

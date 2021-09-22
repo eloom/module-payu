@@ -37,10 +37,10 @@ Boleto bancário - instale o pacote adicional [PayU Brasil](https://github.com/e
 MULTIcaja/Klap - instale o pacote adicional [PayU Chile](https://github.com/eloom/module-payu-cl).
 
 ## Pagamento local para PayU Colombia
-Baloto + Effecty - instale o pacote adicional [PayU Colombia](https://github.com/eloom/module-payu-co).
+Baloto, Effecty e PSE - instale o pacote adicional [PayU Colombia](https://github.com/eloom/module-payu-co).
 
 ## Pagamento local para PayU Mexico
-Oxxo + 7-ELEVEN - instale o pacote adicional [PayU Mexico](https://github.com/eloom/module-payu-mx).
+Oxxo e 7-ELEVEN - instale o pacote adicional [PayU Mexico](https://github.com/eloom/module-payu-mx).
 
 ## Pagamento local para PayU Peru
 PagoEfectivo - instale o pacote adicional [PayU Peru](https://github.com/eloom/module-payu-pe).
