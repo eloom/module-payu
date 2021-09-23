@@ -1,6 +1,6 @@
 {
   "name": "eloom/module-payu",
-  "description": "PayU Latam para Magento 2",
+  "description": "PayU Latam para Magento",
   "homepage": "https://eloom.tech/payu-latam",
   "keywords": [
     "magento",
@@ -30,6 +30,8 @@
   "support": {
     "email": "contato@eloom.com.br"
   },
+  "minimum-stability": "dev",
+  "prefer-stable" : true,
   "require": {
     "php": "~7.2|~7.3|~7.4",
     "magento/framework": "102.0.*|103.0.*",
