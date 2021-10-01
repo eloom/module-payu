@@ -3,10 +3,13 @@
 	<group id="eloom_payments_payu" translate="label" type="text" sortOrder="1010" showInDefault="1" showInWebsite="1" showInStore="0">
 		<label>PayU - General Settings</label>
 		
-		<field id="configuration_details" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
-			<label>Configuration Details</label>
-			<comment>https://docs.eloom.tech/payment/payu-latam</comment>
-			<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset\Hint</frontend_model>
+		<field id="version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Installed version</label>
+			<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset\VersionHint</frontend_model>
+		</field>
+		<field id="docs" translate="label" type="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+			<label>Documentation</label>
+			<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset\DocsHint</frontend_model>
 		</field>
 		
 		<field id="integration" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
