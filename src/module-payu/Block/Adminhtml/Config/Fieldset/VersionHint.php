@@ -42,7 +42,7 @@ class VersionHint extends Template implements RendererInterface {
 	public function render(AbstractElement $element) {
 		$dbVersion = (string)$this->moduleResource->getDbVersion('Eloom_PayU');
 		
-		$version = '<strong>' . $dbVersion . '</strong> - [<a href="https://github.com/eloom/module-payu/releases">' . __('Releases') . '</a>]';
+		$version = '<strong>' . $dbVersion . '</strong> - [<a href="https://github.com/eloom/module-payu/releases" target="_blank">' . __('Releases') . '</a>]';
 		
 		$html = '';
 		$html .= sprintf('<tr id="row_%s">', $element->getHtmlId());
