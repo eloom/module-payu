@@ -87,7 +87,7 @@
 "Sending information to the payment system.","Enviando informações ao sistema de pagamento."
 "Syncronize","Sincronizar"
 "Stored Cards","Cartão de crédito armazenado"
-"Store in Sandbox mode. Orders with no commercial value.","Loja em modo Sandbox. Pedidos sem valor comercial."
+"Store in Sandbox mode. Orders with no commercial value.","Loja em modo Sandbox. Compra sem valor comercial."
 
 # -- T
 "Transaction State","Status"
@@ -101,7 +101,7 @@
 "Taxvat is required","O campo CPF / CNPJ não está presente ou não foi preenchido."
 " to learn more."," para saber mais."
 "Transaction in test mode?","Transação em modo teste?"
-"Transaction in test mode. Orders with no commercial value.","Transação em modo test. Pedidos sem valor comercial."
+"Transaction in test mode. Orders with no commercial value.","Transação em modo test. Compra sem valor comercial."
 
 # -- U
 

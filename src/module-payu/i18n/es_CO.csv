@@ -85,7 +85,7 @@
 "Sending information to the payment system.","Enviar información al sistema de pago."
 "Syncronize","Sincronizar"
 "Stored Cards","Tarjeta de crédito almacenada"
-"Store in Sandbox mode. Orders with no commercial value.","Tienda en modo Sandbox. Pedidos sin valor comercial."
+"Store in Sandbox mode. Orders with no commercial value.","Tienda en modo Sandbox. Compra sin valor comercial."
 
 # -- T
 "Transaction State","Estado de la transacción"
@@ -99,7 +99,7 @@
 "Taxvat is required","El campo Número de documento no está presente o no está lleno."
 " to learn more."," para más informaciones."
 "Transaction in test mode?","¿Transacción en modo de prueba?"
-"Transaction in test mode. Orders with no commercial value.","Transacción em modo test. Pedidos sin valor comercial."
+"Transaction in test mode. Orders with no commercial value.","Transacción em modo test. Compra sin valor comercial."
 
 # -- U
 
