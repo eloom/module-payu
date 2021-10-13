@@ -1,7 +1,7 @@
 # --
 "%1x %2 = %3","%1x en %2 = %3"
 "%1x %2 = %3 (%4% off)","%1x en %2 = %3 (%4% off)"
-"%1x %2 = %3 (c/ interest of %4% a.m.)","%1x en %2 = %3 (c/ interés de %4% a.m.)"
+"%1x %2 = %3 (c/ interest of %4% a.m.)","%1x en %2 = %3 (c/ intereses de %4% a.m.)"
 
 # -- A
 "Applied over already converted value.",""Aplicado sobre el valor convertido."
@@ -35,12 +35,12 @@
 "Holder Phone","Teléfono/Móvil"
 
 # -- I
-"Interest","Interés"
-"Interest (a.m.)","Interés (a.m.)"
+"Interest","Intereses"
+"Interest (a.m.)","Intereses (a.m.)"
 "Installments","Cuotas"
 "Installment ranges","Rangos de cuotas"
 "In %1x of %2","En %1x de %2"
-"Interest options","Opciones de interés"
+"Interest options","Opciones de intereses"
 "<strong>Installments options</strong>","<strong>Opciones de cuotas</strong>"
 "Invoice options","Opciones de factura"
 "Invalid response platform payment.","El sistema no recibió respuesta de la plataforma de pago."
