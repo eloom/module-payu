@@ -47,7 +47,7 @@ PagoEfectivo - instale o pacote adicional [PayU Peru](https://github.com/eloom/m
 
 ## Links
 
-* [Web site](https://eloom.tech/payu-latam)
+* [Web site](https://eloom.tech/magento/payment/payu-latam)
 * [Documentação](https://docs.eloom.tech/payu-latam)
 * [Issue tracker](https://github.com/eloom/module-payu/issues)
 * [Packagist](https://packagist.org/packages/eloom/module-payu)
