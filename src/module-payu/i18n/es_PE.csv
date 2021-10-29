@@ -116,7 +116,7 @@
 
 # --
 "APPROVED","La transacción ha sido aprobada."
-"ANTIFRAUD_REJECTED","La transacción fue rechazada. Asegúrese de ingresar los datos y la dirección de su tarjeta de crédito correctamente. La dirección de facturación debe coincidir con la dirección de la factura de la tarjeta de crédito."
+"ANTIFRAUD_REJECTED","La transacción fue rechazada. Comuníquese con su operador para borrar la transacción. Asegúrese de ingresar los datos y la dirección de su tarjeta de crédito correctamente. La dirección de facturación debe coincidir con la dirección de la factura de la tarjeta de crédito."
 "PAYMENT_NETWORK_REJECTED","La institución financiera ha rechazado su transacción. Comuníquese con su banco para obtener más detalles."
 "ENTITY_DECLINED","El banco o la red financiera rechazaron la transacción debido a un error. Comuníquese con el banco emisor para obtener más información."
 "INTERNAL_PAYMENT_PROVIDER_ERROR","Hubo un error del sistema al intentar procesar el pago. Vuelva a intentarlo más tarde."

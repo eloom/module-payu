@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.2
+* @version      1.0.3
 * @license      https://eloom.tech/license
 *
 */
@@ -23,6 +23,30 @@ class Info extends ConfigurableInfo {
 	 * @var string
 	 */
 	protected $_template = 'Eloom_PayU::info/default.phtml';
+
+	public function getPaymentLink() {
+		return null;
+	}
+
+	public function getPdfLink() {
+		return null;
+	}
+
+	public function getBarCode() {
+		return null;
+	}
+
+	public function getExpirationDate() {
+		return null;
+	}
+
+	public function getQrCodeEmv() {
+		return null;
+	}
+
+	public function getQrCodeImageBase64() {
+		return null;
+	}
 
 	protected function getLabel($field) {
 		return __($field);

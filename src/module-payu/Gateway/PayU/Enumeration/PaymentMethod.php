@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.2
+* @version      1.0.3
 * @license      https://eloom.tech/license
 *
 */
@@ -52,7 +52,8 @@ class PaymentMethod extends AbstractMultiton {
 		 * BR
 		 */
 		new static('boleto', 'BOLETO_BANCARIO');
-		
+		new static('pix', 'PIX');
+
 		/**
 		 * CL
 		 */

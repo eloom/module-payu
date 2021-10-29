@@ -118,7 +118,7 @@
 
 # --
 "APPROVED","A transação foi aprovada."
-"ANTIFRAUD_REJECTED","A transação foi rejeitada. Verifique se você informou os dados do cartão de crédito e endereço corretamente. O Endereço de Cobrança deve coincidir com o Endereço da Fatura do Cartão de Crédito."
+"ANTIFRAUD_REJECTED","A transação foi rejeitada. Entre em contato com sua operadora para liberar a transação. Verifique se você informou os dados do cartão de crédito e endereço corretamente. O Endereço de Cobrança deve coincidir com o Endereço da Fatura do Cartão de Crédito."
 "PAYMENT_NETWORK_REJECTED","A intituição financeira rejeitou sua transação. Entre em contato com seu banco para mais detalhes."
 "ENTITY_DECLINED","A transação foi rejeitada pelo banco ou pela rede financeira devido a um erro. Entre em contato com o banco emissor para mais detalhes."
 "INTERNAL_PAYMENT_PROVIDER_ERROR","Ocorreu um erro no sistema tentando processar o pagamento. Tente novamente mais tarde."
