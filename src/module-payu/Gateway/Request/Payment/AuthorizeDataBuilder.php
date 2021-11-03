@@ -16,6 +16,7 @@ namespace Eloom\PayU\Gateway\Request\Payment;
 
 use Eloom\PayU\Gateway\PayU\Enumeration\Country;
 use Eloom\PayU\Gateway\PayU\Enumeration\TransactionType;
+use Eloom\PayU\Helper\MappedOrderAttributeDefinition;
 use Eloom\PayU\Plugin\Signature;
 use Eloom\PayU\Resources\Builder;
 use Magento\Framework\App\ObjectManager;
@@ -27,53 +28,53 @@ use Magento\Sales\Model\OrderRepository;
 use Psr\Log\LoggerInterface;
 
 class AuthorizeDataBuilder implements BuilderInterface {
-	
+
 	const TRANSACTION = 'transaction';
-	
+
 	const PAYMENT_COUNTRY = 'paymentCountry';
-	
+
 	const TYPE = 'type';
-	
+
 	const ORDER = 'order';
-	
+
 	const ACCOUNT_ID = 'accountId';
-	
+
 	const REFERENCE_CODE = 'referenceCode';
-	
+
 	const LANGUAGE = 'language';
-	
+
 	const APPLICATION_ID = 'partnerId';
-	
+
 	const DESCRIPTION = 'description';
-	
+
 	const NOTIFY_URL = 'notifyUrl';
-	
+
 	const SIGNATURE = 'signature';
-	
+
 	const IP_ADDRESS = 'ipAddress';
-	
+
 	const BUYER = 'buyer';
-	
+
 	const FULL_NAME = 'fullName';
-	
+
 	const EMAIL_ADDRESS = 'emailAddress';
-	
+
 	const CONTACT_PHONE = 'contactPhone';
-	
+
 	const DNI_NUMBER = 'dniNumber';
-	
+
 	const DNI_TYPE = 'dniType';
-	
+
 	const CNPJ = 'docs.eloom.tech/payu-latam';
-	
+
 	const BIRTH_DATE = 'birthdate';
-	
+
 	/**
 	 * Address
 	 */
 	const SHIPPING_ADDRESS = 'shippingAddress';
 	const BILLING_ADDRESS = 'billingAddress';
-	
+
 	const STREET_1 = 'street1';
 	const STREET_2 = 'street2';
 	const CITY = 'city';
@@ -81,62 +82,62 @@ class AuthorizeDataBuilder implements BuilderInterface {
 	const COUNTRY = 'country';
 	const POSTALCODE = 'postalCode';
 	const PHONE = 'phone';
-	
+
 	/**
 	 * Payer
 	 */
 	const PAYER = 'payer';
-	
+
 	protected $urlBuilder;
-	
+
 	private $orderRepository;
-	
+
 	private $config;
-	
+
 	/**
 	 * @var LoggerInterface
 	 */
 	protected $logger;
-	
-	public function __construct(ConfigInterface $config,
-	                            UrlInterface    $urlBuilder,
-	                            OrderRepository $orderRepository,
-	                            LoggerInterface $logger) {
+
+	public function __construct(ConfigInterface                $config,
+	                            UrlInterface                   $urlBuilder,
+	                            OrderRepository                $orderRepository,
+	                            LoggerInterface                $logger) {
 		$this->config = $config;
 		$this->urlBuilder = $urlBuilder;
 		$this->orderRepository = $orderRepository;
 		$this->logger = $logger;
 	}
-	
+
 	public function build(array $buildSubject) {
 		$paymentDataObject = SubjectReader::readPayment($buildSubject);
 		$order = $paymentDataObject->getPayment()->getOrder();
-		
+
 		$storeId = $order->getStoreId();
 		$billingAddress = $paymentDataObject->getOrder()->getBillingAddress();
 		$shippingAddress = $paymentDataObject->getOrder()->getShippingAddress();
 		if (!$shippingAddress) {
 			$shippingAddress = $billingAddress;
 		}
-		
+
 		$total = $order->getGrandTotal();
 		if ($this->config->isPayerPayInterests($storeId)) {
 			if ($order->getPayuInterestAmount()) {
 				$total -= $order->getPayuInterestAmount();
 			}
 		}
-		
+
 		$total = number_format($total, 2, '.', '');
 		$country = Country::memberByKey($order->getOrderCurrencyCode());
-		
+
 		$paymentData = ObjectManager::getInstance()->get(\Eloom\Payment\Helper\Data::class);
 		$ipAddress = $paymentData->getIp($order->getXForwardedFor(), $order->getRemoteIp());
-		
+
 		$result = [];
 		$result[self::TYPE] = TransactionType::AUTHORIZATION_AND_CAPTURE()->key();
 		$result[self::PAYMENT_COUNTRY] = $country->getCode();
 		$result[self::IP_ADDRESS] = $ipAddress;
-		
+
 		$addressClassName = get_class($billingAddress);
 		if ($addressClassName == 'Magento\Payment\Gateway\Data\Order\AddressAdapter') {
 			$billingStreet1 = $billingAddress->getStreetLine1();
@@ -149,19 +150,21 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			$shippingStreet1 = $shippingAddress->getStreetLine(1);
 			$shippingStreet2 = $shippingAddress->getStreetLine(2);
 		}
-		
+
 		$billingStreet1 = substr($billingStreet1, 0, 100);
 		$billingStreet2 = substr($billingStreet2, 0, 100);
 		$shippingStreet1 = substr($shippingStreet1 ?: '', 0, 100);
 		$shippingStreet2 = substr($shippingStreet2 ?: '', 0, 100);
-		
+
 		/**
 		 * Buyer
 		 */
 		$name = trim($shippingAddress->getFirstname()) . ' ' . trim($shippingAddress->getLastname());
-		$taxvat = ($order->getCustomerTaxvat() ? $order->getCustomerTaxvat() : $order->getBillingAddress()->getVatId());
+
+		$attributeDefinition = ObjectManager::getInstance()->get(MappedOrderAttributeDefinition::class);
+		$taxvat = $attributeDefinition->getTaxvat($order);
 		$taxvat = preg_replace('/\D/', '', $taxvat);
-		
+
 		$buyer = [
 			self::FULL_NAME => substr($name, 0, 150),
 			self::EMAIL_ADDRESS => $billingAddress->getEmail(),
@@ -177,13 +180,13 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				self::PHONE => preg_replace('/\D/', '', $shippingAddress->getTelephone()),
 			]
 		];
-		
+
 		if ($country->isBrazil()) {
 			if (strlen($taxvat) == 14) {
 				$buyer[self::CNPJ] = $taxvat;
 			}
 		}
-		
+
 		/**
 		 * Order
 		 */
@@ -212,13 +215,13 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			],
 			self::BUYER => $buyer
 		];
-		
+
 		/**
 		 * Payer
 		 */
 		$payerTaxVat = $taxvat;
 		$payerFone = $billingAddress->getTelephone();
-		
+
 		$name = trim($billingAddress->getFirstname()) . ' ' . trim($billingAddress->getLastname());
 		$payer = [
 			self::EMAIL_ADDRESS => $billingAddress->getEmail(),
@@ -237,17 +240,18 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			],
 		];
 		if ($country->isArgentina() || $country->isColombia()) {
+			$dniType = $attributeDefinition->getDniType($order);
 			if ($country->isArgentina()) {
-				$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
+				$payer[self::DNI_TYPE] = $dniType;
 			} else {
-				if (null != $order->getBillingAddress()->getDnitype()) {
-					$payer[self::DNI_TYPE] = $order->getBillingAddress()->getDnitype();
+				if (null != $dniType) {
+					$payer[self::DNI_TYPE] = $dniType;
 				}
 			}
 		}
-		
+
 		$result[self::PAYER] = $payer;
-		
+
 		return [self::TRANSACTION => $result];
 	}
 }

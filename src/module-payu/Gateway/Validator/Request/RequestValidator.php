@@ -16,7 +16,9 @@ namespace Eloom\PayU\Gateway\Validator\Request;
 
 use Eloom\Core\Exception\TaxvatException;
 use Eloom\Core\Model\ResourceModel\Taxvat\ValidatorHandlerFactory;
+use Eloom\PayU\Helper\MappedQuoteAttributeDefinition;
 use Magento\Checkout\Model\Session;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Validator\ResultInterface;
@@ -24,16 +26,16 @@ use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
 use Psr\Log\LoggerInterface;
 
 class RequestValidator extends \Magento\Payment\Gateway\Validator\AbstractValidator {
-	
+
 	protected $checkoutSession;
-	
+
 	protected $validatorHandlerFactory;
-	
+
 	/**
 	 * @var LoggerInterface
 	 */
 	protected $logger;
-	
+
 	public function __construct(ResultInterfaceFactory  $resultFactory,
 	                            Session                 $checkoutSession,
 	                            ValidatorHandlerFactory $validatorHandlerFactory,
@@ -41,17 +43,18 @@ class RequestValidator extends \Magento\Payment\Gateway\Validator\AbstractValida
 		$this->checkoutSession = $checkoutSession;
 		$this->validatorHandlerFactory = $validatorHandlerFactory;
 		$this->logger = $logger;
-		
+
 		parent::__construct($resultFactory);
 	}
-	
+
 	public function validate(array $validationSubject): ResultInterface {
 		$isValid = true;
 		$fails = array();
-		
+
 		$quote = $this->checkoutSession->getQuote();
 		try {
-			$taxvat = ($quote->getCustomerTaxvat() ? $quote->getCustomerTaxvat() : $quote->getBillingAddress()->getVatId());
+			$attributeDefinition = ObjectManager::getInstance()->get(MappedQuoteAttributeDefinition::class);
+			$taxvat = $attributeDefinition->getTaxvat($quote);;
 			$factory = $this->validatorHandlerFactory->create();
 			$result = $factory->validate($taxvat);
 		} catch (TaxvatException $ex) {
@@ -59,7 +62,7 @@ class RequestValidator extends \Magento\Payment\Gateway\Validator\AbstractValida
 			$isValid = false;
 			array_push($fails, __($ex->getMessage()));
 		}
-		
+
 		return $this->createResult($isValid, $fails);
 	}
 }

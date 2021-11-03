@@ -16,7 +16,9 @@ namespace Eloom\PayU\Gateway\Validator\Request;
 
 use Eloom\Core\Exception\TaxvatException;
 use Eloom\Core\Model\ResourceModel\Taxvat\ValidatorHandlerFactory;
+use Eloom\PayU\Helper\MappedQuoteAttributeDefinition;
 use Magento\Checkout\Model\Session;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Validator\ResultInterface;
@@ -27,19 +29,19 @@ use Psr\Log\LoggerInterface;
 class CcRequestValidator extends \Magento\Payment\Gateway\Validator\AbstractValidator {
 
 	protected $checkoutSession;
-	
+
 	protected $validatorHandlerFactory;
-	
+
 	private $logger;
 
-	public function __construct(ResultInterfaceFactory $resultFactory,
-	                            Session $checkoutSession,
-	                            LoggerInterface $logger,
+	public function __construct(ResultInterfaceFactory  $resultFactory,
+	                            Session                 $checkoutSession,
+	                            LoggerInterface         $logger,
 	                            ValidatorHandlerFactory $validatorHandlerFactory) {
 		$this->checkoutSession = $checkoutSession;
 		$this->logger = $logger;
 		$this->validatorHandlerFactory = $validatorHandlerFactory;
-		
+
 		parent::__construct($resultFactory);
 	}
 
@@ -48,9 +50,10 @@ class CcRequestValidator extends \Magento\Payment\Gateway\Validator\AbstractVali
 		$fails = array();
 
 		$quote = $this->checkoutSession->getQuote();
-		
+
 		try {
-			$taxvat = ($quote->getCustomerTaxvat() ? $quote->getCustomerTaxvat() : $quote->getBillingAddress()->getVatId());
+			$attributeDefinition = ObjectManager::getInstance()->get(MappedQuoteAttributeDefinition::class);
+			$taxvat = $attributeDefinition->getTaxvat($quote);
 			$factory = $this->validatorHandlerFactory->create();
 			$result = $factory->validate($taxvat);
 		} catch (TaxvatException $ex) {
@@ -58,7 +61,7 @@ class CcRequestValidator extends \Magento\Payment\Gateway\Validator\AbstractVali
 			$isValid = false;
 			array_push($fails, __($ex->getMessage()));
 		}
-		
+
 		$payment = $validationSubject['payment'];
 		$creditCardHash = $payment->getAdditionalInformation(TokenUiComponentProviderInterface::COMPONENT_PUBLIC_HASH);
 

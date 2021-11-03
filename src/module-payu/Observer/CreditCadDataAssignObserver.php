@@ -82,13 +82,16 @@ class CreditCadDataAssignObserver extends AbstractDataAssignObserver {
 				OrderPaymentInterface::CC_EXP_YEAR => $year
 			]);
 		}
-		
+
 		if ($additionalData->getCcInstallments()) {
 			$arrayex = explode('-', $additionalData->getCcInstallments());
 			if (isset($arrayex[0])) {
 				$paymentInfo->setAdditionalInformation('installments', intval($arrayex[0]));
 				$paymentInfo->setAdditionalInformation('installmentAmount', floatval($arrayex[1]));
 			}
+		} else {
+			$paymentInfo->setAdditionalInformation('installments', intval(1));
+			$paymentInfo->setAdditionalInformation('installmentAmount', floatval($additionalData->getGrandTotal()));
 		}
 		$paymentInfo->setAdditionalInformation('ccBank', $additionalData->getCcBank());
 		$paymentInfo->setAdditionalInformation('activePaymentToken', false);

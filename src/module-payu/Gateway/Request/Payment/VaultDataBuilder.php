@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Eloom\PayU\Gateway\Request\Payment;
 
 use Eloom\PayU\Gateway\PayU\Enumeration\PaymentMethod;
+use Eloom\PayU\Helper\MappedOrderAttributeDefinition;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\UrlInterface;
 use Magento\Payment\Gateway\ConfigInterface;
 use Magento\Payment\Gateway\Helper\SubjectReader;
@@ -41,12 +43,13 @@ class VaultDataBuilder implements BuilderInterface {
 		$paymentDataObject = SubjectReader::readPayment($buildSubject);
 		$payment = $paymentDataObject->getPayment();
 
-		if(!$payment->getAdditionalInformation('activePaymentToken')) {
+		if (!$payment->getAdditionalInformation('activePaymentToken')) {
 			return [];
 		}
 		$order = $paymentDataObject->getPayment()->getOrder();
 
-		$taxvat = ($order->getCustomerTaxvat() ? $order->getCustomerTaxvat() : $order->getBillingAddress()->getVatId());
+		$attributeDefinition = ObjectManager::getInstance()->get(MappedOrderAttributeDefinition::class);
+		$taxvat = $attributeDefinition->getTaxvat($order);
 		$taxvat = preg_replace('/\D/', '', $taxvat);
 
 		$creditCardNumber = preg_replace('/[\-\s]+/', '', $payment->getCcNumber());
