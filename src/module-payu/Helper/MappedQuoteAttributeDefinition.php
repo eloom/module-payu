@@ -23,7 +23,7 @@ class MappedQuoteAttributeDefinition extends \Magento\Framework\App\Helper\Abstr
 		parent::__construct($context);
 	}
 
-	public function getTaxvat(Quote $quote) {
+	public function getTaxvat(Quote $quote): string {
 		if ($quote->getCustomerIsGuest()) {
 			return $quote->getBillingAddress()->getVatId();
 		}

@@ -23,7 +23,7 @@ class MappedOrderAttributeDefinition extends \Magento\Framework\App\Helper\Abstr
 		parent::__construct($context);
 	}
 
-	public function getTaxvat(Order $order) {
+	public function getTaxvat(Order $order): string {
 		if ($order->getCustomerIsGuest()) {
 			return $order->getBillingAddress()->getVatId();
 		}
@@ -31,7 +31,7 @@ class MappedOrderAttributeDefinition extends \Magento\Framework\App\Helper\Abstr
 		return $order->getCustomerTaxvat();
 	}
 
-	public function getDniType(Order $order) {
+	public function getDniType(Order $order): ?string {
 		if (null != $order->getBillingAddress()->getDnitype()) {
 			return $order->getBillingAddress()->getDnitype();
 		}
