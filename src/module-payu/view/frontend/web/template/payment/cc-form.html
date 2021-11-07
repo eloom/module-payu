@@ -30,14 +30,14 @@
 						       name="payment[cc_number]"
 						       class="input-text"
 						       data-bind="attr: {autocomplete: off,
-																	 id: getCode() + '_number',
-																	 title: $t('Credit Card Number'),
-																	 class: creditCardNumberStatus,
-																	 'data-container': getCode() + '-number',
-																	 'data-validate': JSON.stringify({'required':true})},
-								             value: creditCardNumber,
-								             valueUpdate: 'keyup',
-														 event: {blur: creditCardNumberBlurEvent()}"/>
+										  id: getCode() + '_number',
+										  title: $t('Credit Card Number'),
+										  class: creditCardNumberStatus,
+										  'data-container': getCode() + '-number',
+										  'data-validate': JSON.stringify({'required':true})},
+								          value: creditCardNumber,
+								          valueUpdate: 'keyup',
+										  event: {blur: creditCardNumberBlurEvent()}"/>
 						<span class="card-brand-icon" data-bind="attr: {visible: isShowCreditCardBrandIcon()}"><span data-bind="style: {'background-image': 'url(\'' + creditCardBrandIcon() + '\')'}"></span></span>
 					</div>
 				</div>
@@ -114,12 +114,12 @@
 					<div class="control">
 						<select  name="payment[cc_installments]"
 						         data-bind="attr: {id: getCode() + '_installments',
-															 'data-container': getCode() + '-installments',
-															 'data-validate': JSON.stringify({'required':true})},
-															  options: installments,
-															  optionsText: 't',
-															  optionsValue: 'v',
-																event: {change: reloadTotals}">
+												 'data-container': getCode() + '-installments',
+												 'data-validate': JSON.stringify({'required':true})},
+												  options: installments,
+												  optionsText: 't',
+												  optionsValue: 'v',
+												  event: {change: reloadTotals}">
 						</select>
 					</div>
 				</div>
