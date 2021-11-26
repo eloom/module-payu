@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 	
-	<preference for="Eloom\PayU\Api\BanksOfMexicoInterface" type="Eloom\PayU\Model\BanksOfMexico" />
-	
-	<preference for="Eloom\PayU\Api\TotalsInterface" type="Eloom\PayU\Model\Totals" />
-	
-	<preference for="Eloom\PayU\Api\PromotionsInterface" type="Eloom\PayU\Model\Promotions" />
+	<preference for="Eloom\PayU\Api\BanksOfMexicoInterface"
+	            type="Eloom\PayU\Model\BanksOfMexico" />
+	<!--
+	<preference for="Eloom\PayU\Api\GuestPaymentMethodManagementInterface"
+	            type="Eloom\PayU\Model\GuestPaymentMethodManagement" />
+
+	<preference for="Eloom\PayU\Api\PaymentMethodManagementInterface"
+	            type="Eloom\PayU\Model\PaymentMethodManagement" />
+	-->
+	<preference for="Eloom\PayU\Api\PromotionsInterface"
+	            type="Eloom\PayU\Model\Promotions" />
+
+	<preference for="Eloom\PayU\Api\TotalsInterface"
+	            type="Eloom\PayU\Model\Totals" />
 	
 	<type name="Magento\Payment\Model\Checks\SpecificationFactory">
 		<arguments>

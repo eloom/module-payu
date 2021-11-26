@@ -1,11 +1,28 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-	
+
+	<route url="/V1/guest-carts/:cartId/retrieve-payu-payment-methods" method="POST">
+		<service class="Eloom\PayU\Api\GuestPaymentMethodManagementInterface" method="getPaymentMethods"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+
+	<route url="/V1/carts/mine/retrieve-payu-payment-methods" method="POST">
+		<service class="Eloom\PayU\Api\PaymentMethodManagementInterface" method="getPaymentMethods"/>
+		<resources>
+			<resource ref="self"/>
+		</resources>
+		<data>
+			<parameter name="cartId" force="true">%cart_id%</parameter>
+		</data>
+	</route>
+
 	<route url="/V1/eloom/payu/totals" method="POST">
 		<service class="Eloom\PayU\Api\TotalsInterface" method="reload"/>
 		<resources>
-			<resource ref="anonymous"/>
+			<resource ref="self"/>
 		</resources>
 	</route>
 
@@ -15,7 +32,7 @@
 			<resource ref="anonymous"/>
 		</resources>
 	</route>
-	
+
 	<route url="/V1/eloom/payu/banks" method="POST">
 		<service class="Eloom\PayU\Api\BanksOfMexicoInterface" method="listBanks"/>
 		<resources>

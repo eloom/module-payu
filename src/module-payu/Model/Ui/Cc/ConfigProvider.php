@@ -60,7 +60,7 @@ class ConfigProvider implements ConfigProviderInterface {
 			$iconUri = "Eloom_Payment::images/payment/{$iconType}";
 			$brands = [
 				'amex' => $this->assetRepo->getUrl("{$iconUri}/amex.svg"),
-				'diners' => $this->assetRepo->getUrl("{$iconUri}/diners.svg"),
+				'dinersclub' => $this->assetRepo->getUrl("{$iconUri}/diners.svg"),
 				'elo' => $this->assetRepo->getUrl("{$iconUri}/elo.svg"),
 				'hipercard' => $this->assetRepo->getUrl("{$iconUri}/hipercard.svg"),
 				'mastercard' => $this->assetRepo->getUrl("{$iconUri}/mastercard.svg"),
