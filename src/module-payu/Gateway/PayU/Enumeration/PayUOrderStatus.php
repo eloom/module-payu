@@ -5,8 +5,8 @@
 * 
 * @category     elOOm
 * @package      Modulo PayU Latam
-* @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.3
+* @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
+* @version      1.0.4
 * @license      https://eloom.tech/license
 *
 */
@@ -34,6 +34,7 @@ class PayUOrderStatus extends AbstractMultiton {
 		new static('CANCELLED');
 		new static('DECLINED');
 		new static('REFUNDED');
+		new static('CHARGEBACK');
 	}
 
 	protected function __construct($key) {

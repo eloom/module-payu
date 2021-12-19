@@ -1,3 +1,12 @@
+# 1.0.4
+## 18/12/2021
+
+1. [](#fix)
+   * Identificação da bandeira Diners
+   
+2. [](#add)
+   * Impossibilitar submit sem identificar a bandeira do cartão de crédito
+
 # 1.0.3
 ## 07/11/2021
 

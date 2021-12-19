@@ -29,6 +29,8 @@
 						<input type="tel"
 						       name="payment[cc_number]"
 						       class="input-text"
+							   onpaste="return false"
+							   ondrop="return false"
 						       data-bind="attr: {autocomplete: off,
 										  id: getCode() + '_number',
 										  title: $t('Credit Card Number'),
@@ -68,6 +70,8 @@
 							<input type="tel"
 							       name="payment[cc_cvv]"
 							       class="input-text"
+								   onpaste="return false"
+								   ondrop="return false"
 							       maxlength="4"
 							       data-bind="attr: {id: getCode() + '_cvv',
 												title: $t('Credit Card CVC'),
@@ -99,6 +103,8 @@
 						<input type="text"
 						       name="payment[cc_owner]"
 						       class="input-text"
+							   onpaste="return false"
+							   ondrop="return false"
 						       data-bind="attr: {
 												autocomplete: off,
 												id: getCode() + '_owner',
@@ -198,7 +204,7 @@
 				        data-bind="click: placeOrder,
 				                   attr: {title: placeOrderTotalOrderAmount},
 				                   css: {disabled:!isPlaceOrderActionAllowed()},
-				                   enable: (getCode() == isChecked())"
+				                   enable: isPlaceOrderEnabled()"
 				        disabled>
 					<span data-bind="i18n: 'Place Order'"></span>
 				</button>

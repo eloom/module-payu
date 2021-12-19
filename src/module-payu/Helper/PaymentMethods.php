@@ -5,8 +5,8 @@
 * 
 * @category     elOOm
 * @package      Modulo PayU Latam
-* @copyright    Copyright (c) 2021 Ã©lOOm (https://eloom.tech)
-* @version      1.0.3
+* @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
+* @version      1.0.4
 * @license      https://eloom.tech/license
 *
 */
@@ -41,11 +41,11 @@ class PaymentMethods extends \Magento\Framework\App\Helper\AbstractHelper {
 
 	private $serializer;
 
-	public function __construct(Json                                       $serializer = null,
+	public function __construct(Json                    $serializer = null,
 	                            CartRepositoryInterface $quoteRepository,
-	                            ConfigProvider                             $configProvider,
-	                            CcConfigProvider                           $ccConfigProvider,
-	                            Context                                    $context) {
+	                            ConfigProvider          $configProvider,
+	                            CcConfigProvider        $ccConfigProvider,
+	                            Context                 $context) {
 		parent::__construct($context);
 
 		$this->serializer = $serializer ?: ObjectManager::getInstance()->get(Json::class);
@@ -75,8 +75,11 @@ class PaymentMethods extends \Magento\Framework\App\Helper\AbstractHelper {
 
 		$country = Country::memberByWithDefault('getCode', $country);
 		if ($country->isArgentina()) {
-			$config = ObjectManager::getInstance()->get(\Eloom\PayUAr\Model\Ui\PagoFacil\ConfigProvider::class);
-			$payment[] = $config->getConfig()['payment'];
+			try {
+				$config = ObjectManager::getInstance()->get(\Eloom\PayUAr\Model\Ui\PagoFacil\ConfigProvider::class);
+				$payment[] = $config->getConfig()['payment'];
+			} catch (\Exception $e) {
+			}
 		} elseif ($country->isBrazil()) {
 			try {
 				$config = ObjectManager::getInstance()->get(\Eloom\PayUBr\Model\Ui\Boleto\ConfigProvider::class);
@@ -87,6 +90,4 @@ class PaymentMethods extends \Magento\Framework\App\Helper\AbstractHelper {
 
 		return $this->serializer->serialize(['payment' => $payment]);
 	}
-
-
 }
