@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
-* @version      1.0.4
+* @version      1.0.5
 * @license      https://eloom.tech/license
 *
 */
@@ -141,10 +141,6 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	
 	public function isPayerPayInterests($storeId = null) {
 		return ($this->getInterests($storeId) == 'P');
-	}
-	
-	public function getStoreCurrency($storeId = null) {
-		return $this->scopeConfig->getValue('currency/options/default', ScopeInterface::SCOPE_STORE, $storeId);
 	}
 	
 	public function isInvoiceCreate($storeId = null) {

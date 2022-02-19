@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
-* @version      1.0.4
+* @version      1.0.5
 * @license      https://eloom.tech/license
 *
 */
@@ -19,9 +19,9 @@ use Eloom\PayU\Gateway\Config\Config;
 use Eloom\PayU\Gateway\PayU\Enumeration\Country;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
-use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Magento\Framework\View\Asset\Repository;
+use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
 class ConfigProvider implements ConfigProviderInterface {
@@ -32,26 +32,26 @@ class ConfigProvider implements ConfigProviderInterface {
 	
 	private $config;
 	
-	private $session;
-	
 	private $encryptor;
 	
 	private $cookieManager;
 	
 	private $logger;
-	
+
+	protected $storeManager;
+
 	public function __construct(Repository              $assetRepo,
-	                            SessionManagerInterface $session,
 	                            Config                  $config,
 	                            EncryptorInterface      $encryptor,
 	                            CookieManagerInterface  $cookieManager,
-	                            LoggerInterface         $logger) {
+	                            LoggerInterface         $logger,
+	                            StoreManagerInterface $storeManager) {
 		$this->assetRepo = $assetRepo;
-		$this->session = $session;
 		$this->config = $config;
 		$this->encryptor = $encryptor;
 		$this->cookieManager = $cookieManager;
 		$this->logger = $logger;
+		$this->storeManager = $storeManager;
 	}
 	
 	public function getCode() {
@@ -59,10 +59,11 @@ class ConfigProvider implements ConfigProviderInterface {
 	}
 	
 	public function getConfig() {
-		$storeId = $this->session->getStoreId();
-		$currency = $this->config->getStoreCurrency($storeId);
+		$store = $this->storeManager->getStore();
+		$storeId = $store->getStoreId();
+		$currency = $store->getCurrentCurrencyCode();
 		$sessionId = $this->cookieManager->getCookie('PHPSESSID');
-		
+
 		$payment = [];
 		
 		try {
@@ -79,7 +80,7 @@ class ConfigProvider implements ConfigProviderInterface {
 			$this->logger->critical(sprintf("%s - Exception: %s", __METHOD__, $e->getMessage()));
 			
 			$payment[self::CODE] = [
-				'message' => $e->getMessage()
+				'message' => sprintf("Currency %s not supported.", $currency)
 			];
 		}
 		

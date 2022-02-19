@@ -1,8 +1,13 @@
+# 1.0.5
+## 21/02/2022
+1. [](#changed)
+   * Currency is dynamically informed by the "Current Currency Code" of the Store Manager.
+
 # 1.0.4
 ## 18/12/2021
 
 1. [](#fix)
-   * Identificação da bandeira Diners
+   * Diners brand identification.
    
 2. [](#add)
    * Impossibilitar submit sem identificar a bandeira do cartão de crédito

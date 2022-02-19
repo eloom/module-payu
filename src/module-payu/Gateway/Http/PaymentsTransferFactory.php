@@ -6,7 +6,7 @@
 * @category     elOOm
 * @package      Modulo PayU Latam
 * @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
-* @version      1.0.4
+* @version      1.0.5
 * @license      https://eloom.tech/license
 *
 */
@@ -21,6 +21,7 @@ use Magento\Payment\Gateway\Http\TransferBuilder;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
+use Magento\Store\Model\StoreManagerInterface;
 
 class PaymentsTransferFactory implements TransferFactoryInterface {
 
@@ -30,12 +31,16 @@ class PaymentsTransferFactory implements TransferFactoryInterface {
 
 	private $logger;
 
+	protected $storeManager;
+
 	public function __construct(TransferBuilder $transferBuilder,
 	                            Config $config,
-	                            Logger $logger) {
+	                            Logger $logger,
+	                            StoreManagerInterface $storeManager) {
 		$this->transferBuilder = $transferBuilder;
 		$this->config = $config;
 		$this->logger = $logger;
+		$this->storeManager = $storeManager;
 	}
 
 	/**
@@ -46,7 +51,9 @@ class PaymentsTransferFactory implements TransferFactoryInterface {
 	 */
 	public function create(array $request) {
 		$body = json_encode($request, JSON_UNESCAPED_SLASHES);
-		$currency = $this->config->getStoreCurrency();
+
+		$store = $this->storeManager->getStore();
+		$currency = $store->getCurrentCurrencyCode();
 
 		$response = $this->transferBuilder
 			->setMethod('POST')
