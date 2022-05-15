@@ -5,8 +5,8 @@
 * 
 * @category     elOOm
 * @package      Modulo PayU Latam
-* @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
-* @version      1.0.5
+* @copyright    Copyright (c) 2022 elOOm (https://eloom.tech)
+* @version      2.0.0
 * @license      https://eloom.tech/license
 *
 */
@@ -65,7 +65,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 
 	const DNI_TYPE = 'dniType';
 
-	const CNPJ = 'docs.eloom.tech/payu-latam';
+	const CNPJ = 'cnpj';
 
 	const BIRTH_DATE = 'birthdate';
 
@@ -99,10 +99,10 @@ class AuthorizeDataBuilder implements BuilderInterface {
 	 */
 	protected $logger;
 
-	public function __construct(ConfigInterface                $config,
-	                            UrlInterface                   $urlBuilder,
-	                            OrderRepository                $orderRepository,
-	                            LoggerInterface                $logger) {
+	public function __construct(ConfigInterface $config,
+	                            UrlInterface    $urlBuilder,
+	                            OrderRepository $orderRepository,
+	                            LoggerInterface $logger) {
 		$this->config = $config;
 		$this->urlBuilder = $urlBuilder;
 		$this->orderRepository = $orderRepository;
@@ -181,19 +181,13 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			]
 		];
 
-		if ($country->isBrazil()) {
-			if (strlen($taxvat) == 14) {
-				$buyer[self::CNPJ] = $taxvat;
-			}
-		}
-
 		/**
 		 * Order
 		 */
 		$result[self::ORDER] = [
 			self::ACCOUNT_ID => $this->config->getAccountId($storeId),
 			self::REFERENCE_CODE => $order->getIncrementId(),
-			self::DESCRIPTION => sprintf(__("%sOrder %s"), ($this->config->isInSandbox($storeId) ? 'PPS-' : ''), $order->getIncrementId()),
+			self::DESCRIPTION => ($this->config->isInSandbox($storeId) ? 'PPS-' : '') . __("Order %1", $order->getIncrementId()),
 			self::LANGUAGE => $country->getLanguage(),
 			self::NOTIFY_URL => $this->urlBuilder->getUrl('eloompayu/payment/notification', ['_secure' => true]),
 			self::APPLICATION_ID => Builder::getInstance()->getApplicationId(),
@@ -212,14 +206,12 @@ class AuthorizeDataBuilder implements BuilderInterface {
 					'value' => $total,
 					'currency' => $country->getCurrency()
 				]
-			],
-			self::BUYER => $buyer
+			]
 		];
 
 		/**
 		 * Payer
 		 */
-		$payerTaxVat = $taxvat;
 		$payerFone = $billingAddress->getTelephone();
 
 		$name = trim($billingAddress->getFirstname()) . ' ' . trim($billingAddress->getLastname());
@@ -227,7 +219,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 			self::EMAIL_ADDRESS => $billingAddress->getEmail(),
 			self::FULL_NAME => $name,
 			//self::BIRTH_DATE => $payerBirthDate,
-			self::DNI_NUMBER => $payerTaxVat,
+			self::DNI_NUMBER => $taxvat,
 			self::CONTACT_PHONE => preg_replace('/\D/', '', $payerFone),
 			self::BILLING_ADDRESS => [
 				self::STREET_1 => $billingStreet1,
@@ -239,16 +231,30 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				self::PHONE => preg_replace('/\D/', '', $payerFone),
 			],
 		];
-		if ($country->isArgentina() || $country->isColombia()) {
+		if ($country->isColombia() || $country->isArgentina()) {
 			$dniType = $attributeDefinition->getDniType($order);
 			if ($country->isArgentina()) {
+				$buyer[self::DNI_TYPE] = $dniType;
 				$payer[self::DNI_TYPE] = $dniType;
 			} else {
 				if (null != $dniType) {
+					$buyer[self::DNI_TYPE] = $dniType;
 					$payer[self::DNI_TYPE] = $dniType;
 				}
 			}
+		} else if ($country->isBrazil()) {
+			if (strlen($taxvat) == 14) {
+				$buyer[self::DNI_TYPE] = 'CNPJ';
+				$buyer[self::CNPJ] = $taxvat;
+				$payer[self::DNI_TYPE] = 'CNPJ';
+				$payer[self::CNPJ] = $taxvat;
+
+				unset($buyer[self::DNI_NUMBER]);
+				unset($payer[self::DNI_NUMBER]);
+			}
 		}
+
+		$result[self::ORDER][self::BUYER] = $buyer;
 
 		$result[self::PAYER] = $payer;
 

@@ -60,7 +60,7 @@
 "Not sure what PayU payment method to use? Click ","Não tem certeza de qual método de pagamento PayU usar? Clique"
 
 # -- O
-"%sOrder %s","%sOrden de compra %s"
+"Order %1","Orden de compra %1"
 
 # -- P
 "Paying via","Pagando a través de"

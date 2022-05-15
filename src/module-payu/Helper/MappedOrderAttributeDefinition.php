@@ -5,8 +5,8 @@
 * 
 * @category     elOOm
 * @package      Modulo PayU Latam
-* @copyright    Copyright (c) 2021 elOOm (https://eloom.tech)
-* @version      1.0.5
+* @copyright    Copyright (c) 2022 elOOm (https://eloom.tech)
+* @version      2.0.0
 * @license      https://eloom.tech/license
 *
 */
@@ -23,7 +23,7 @@ class MappedOrderAttributeDefinition extends \Magento\Framework\App\Helper\Abstr
 		parent::__construct($context);
 	}
 
-	public function getTaxvat(Order $order): string {
+	public function getTaxvat(Order $order): ?string {
 		if ($order->getCustomerIsGuest()) {
 			return $order->getBillingAddress()->getVatId();
 		}
