@@ -114,6 +114,8 @@ class AuthorizeDataBuilder implements BuilderInterface {
 		$order = $paymentDataObject->getPayment()->getOrder();
 
 		$storeId = $order->getStoreId();
+		$countryCode = $this->config->getCountryCode($storeId);
+
 		$billingAddress = $paymentDataObject->getOrder()->getBillingAddress();
 		$shippingAddress = $paymentDataObject->getOrder()->getShippingAddress();
 		if (!$shippingAddress) {
@@ -135,26 +137,20 @@ class AuthorizeDataBuilder implements BuilderInterface {
 
 		$result = [];
 		$result[self::TYPE] = TransactionType::AUTHORIZATION_AND_CAPTURE()->key();
-		$result[self::PAYMENT_COUNTRY] = $country->getCode();
+		$result[self::PAYMENT_COUNTRY] = $countryCode;
 		$result[self::IP_ADDRESS] = $ipAddress;
 
-		$addressClassName = get_class($billingAddress);
-		if ($addressClassName == 'Magento\Payment\Gateway\Data\Order\AddressAdapter') {
-			$billingStreet1 = $billingAddress->getStreetLine1();
-			$billingStreet2 = $billingAddress->getStreetLine2();
-			$shippingStreet1 = $shippingAddress->getStreetLine1();
-			$shippingStreet2 = $shippingAddress->getStreetLine2();
-		} else if ($addressClassName == 'Magento\Sales\Model\Order\Address') {// version: >= 2.4.2-p1
-			$billingStreet1 = $billingAddress->getStreetLine(1);
-			$billingStreet2 = $billingAddress->getStreetLine(2);
-			$shippingStreet1 = $shippingAddress->getStreetLine(1);
-			$shippingStreet2 = $shippingAddress->getStreetLine(2);
-		}
+		$street = $billingAddress->getStreet();
+		$streetAddress = array_shift($street);
+		$extendedAddress = implode(', ', $street);
+		$billingStreet1 = substr($streetAddress, 0, 100);
+		$billingStreet2 = substr($extendedAddress, 0, 100);
 
-		$billingStreet1 = substr($billingStreet1, 0, 100);
-		$billingStreet2 = substr($billingStreet2, 0, 100);
-		$shippingStreet1 = substr($shippingStreet1 ?: '', 0, 100);
-		$shippingStreet2 = substr($shippingStreet2 ?: '', 0, 100);
+		$street = $billingAddress->getStreet();
+		$streetAddress = array_shift($street);
+		$extendedAddress = implode(', ', $street);
+		$shippingStreet1 = substr($streetAddress ?: '', 0, 100);
+		$shippingStreet2 = substr($extendedAddress ?: '', 0, 100);
 
 		/**
 		 * Buyer
@@ -231,9 +227,9 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				self::PHONE => preg_replace('/\D/', '', $payerFone),
 			],
 		];
-		if ($country->isColombia() || $country->isArgentina()) {
+		if ($country->isColombia($countryCode) || $country->isArgentina($countryCode)) {
 			$dniType = $attributeDefinition->getDniType($order);
-			if ($country->isArgentina()) {
+			if ($country->isArgentina($countryCode)) {
 				$buyer[self::DNI_TYPE] = $dniType;
 				$payer[self::DNI_TYPE] = $dniType;
 			} else {
@@ -242,7 +238,7 @@ class AuthorizeDataBuilder implements BuilderInterface {
 					$payer[self::DNI_TYPE] = $dniType;
 				}
 			}
-		} else if ($country->isBrazil()) {
+		} else if ($country->isBrazil($countryCode)) {
 			if (strlen($taxvat) == 14) {
 				$buyer[self::DNI_TYPE] = 'CNPJ';
 				$buyer[self::CNPJ] = $taxvat;

@@ -2,7 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
 		<section id="payment">
-			<group id="eloom_payments">
+			<group id="eloom_payu_latam" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[PayU LATAM Payments (by <a href="https://docs.eloom.tech/es/payment/payu-latam" target="_blank">élOOm Commerce</a>)]]></label>
+				<comment><![CDATA[Accept credit cards and boleto bancário at your Magento store.<br/>The purchase is completed at the store.]]></comment>
+				<fieldset_css>complex eloom-section</fieldset_css>
+				<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset</frontend_model>
+				<attribute type="displayIn">recommended_solutions</attribute>
+
 				<include path="Eloom_PayU::system/basic.xml"/>
 				<include path="Eloom_PayU::system/cc.xml"/>
 			</group>

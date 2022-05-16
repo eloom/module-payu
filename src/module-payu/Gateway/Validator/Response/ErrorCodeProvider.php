@@ -16,18 +16,21 @@ namespace Eloom\PayU\Gateway\Validator\Response;
 
 class ErrorCodeProvider {
 
-	private $dynamicErrors = ['INVALID_TRANSACTION'];
+	private $dynamicErrors = ['ERROR','INVALID_TRANSACTION'];
 
 	public function getErrorCodes($response): array {
 		$result = [];
 		if(isset($response->transactionResponse)) {
 			$code = $response->transactionResponse->responseCode;
+
 			if(in_array($code, $this->dynamicErrors)) {
 				if(null !== $response->transactionResponse->responseMessage) {
 					$code = $response->transactionResponse->responseMessage;
 				}
+				if(null !== $response->transactionResponse->paymentNetworkResponseErrorMessage) {
+					$code = $response->transactionResponse->paymentNetworkResponseErrorMessage;
+				}
 			}
-
 			$result[] = $code;
 		}
 

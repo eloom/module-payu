@@ -159,3 +159,4 @@
 # -- INVALID_TRANSACTION
 "Via BALOTO payments can not exceed COP 1,000,000. Please select another payment method.","Via BALOTO payments can not exceed COP 1,000,000. Please select another payment method."
 "Via EFECTY payments can not exceed COP 3,000,000. Please select another payment method.","Via EFECTY payments can not exceed COP 3,000,000. Please select another payment method."
+"There are not active routes to process the authorization","Método de pago no activado para procesar la solicitud. Contacta a tu Gerente de Cuenta PayU."

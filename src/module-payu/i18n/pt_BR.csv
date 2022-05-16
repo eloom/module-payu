@@ -157,3 +157,4 @@
 "Parameter [payerDNI] is required.","CPF é obrigatório. Verifique nas informações de sua conta se informou o CPF corretamente."
 "The credit card expiration date is not valid","A data de validade do cartão de crédito é inválida."
 "ERROR","Houve um erro ao processar sua requisição. Por favor tente novamente, ou escolha outra forma de pagamento."
+"There are not active routes to process the authorization","Meio de pagamento não ativado para processar a requisição. Entre em contato com seu Gerente de Contas PayU."

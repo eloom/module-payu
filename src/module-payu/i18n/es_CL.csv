@@ -155,3 +155,4 @@
 "Parameter [payerDNI] is required.","Se requiere Número de documento. Verifique la información de su cuenta para obtener la información correcta de Documento de Número de documento."
 "The credit card expiration date is not valid","La fecha de vencimiento de la tarjeta de crédito no es válida."
 "ERROR","Hubo un error al procesar su transacción. Vuelva a intentarlo o elija otro método de pago."
+"There are not active routes to process the authorization","Método de pago no activado para procesar la solicitud. Contacta a tu Gerente de Cuenta PayU."

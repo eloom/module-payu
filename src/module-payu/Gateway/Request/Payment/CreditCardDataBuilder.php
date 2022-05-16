@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Eloom\PayU\Gateway\Request\Payment;
 
 use Eloom\PayU\Gateway\Config\Cc\Config as CcConfig;
+use Eloom\PayU\Gateway\Config\Config as Config;
 use Eloom\PayU\Gateway\PayU\Enumeration\Country;
 use Eloom\PayU\Gateway\PayU\Enumeration\PaymentMethod;
 use Magento\Framework\UrlInterface;
@@ -43,10 +44,14 @@ class CreditCardDataBuilder implements BuilderInterface {
 	const USER_AGENT = 'userAgent';
 	
 	const DEVICE_SESSION_ID = 'deviceSessionId';
-	
+
+	private $config;
+
 	private $ccConfig;
 	
-	public function __construct(CcConfig $ccConfig) {
+	public function __construct(Config $config,
+	                            CcConfig $ccConfig) {
+		$this->config = $config;
 		$this->ccConfig = $ccConfig;
 	}
 	
@@ -61,7 +66,8 @@ class CreditCardDataBuilder implements BuilderInterface {
 		$payment = $paymentDataObject->getPayment();
 		$order = $payment->getOrder();
 		$storeId = $order->getStoreId();
-		
+		$countryCode = $this->config->getCountryCode($storeId);
+
 		$creditCardHash = $payment->getAdditionalInformation(TokenUiComponentProviderInterface::COMPONENT_PUBLIC_HASH);
 		
 		/**
@@ -95,7 +101,7 @@ class CreditCardDataBuilder implements BuilderInterface {
 		];
 		
 		$country = Country::memberByKey($order->getOrderCurrencyCode());
-		if ($country->isMexico()) {
+		if ($country->isMexico($countryCode)) {
 			if ($this->ccConfig->isMonthsWithoutInterestActive($storeId)) {
 				$data['monthsWithoutInterest'] = [
 					'months' => $this->ccConfig->getMonthsWithoutInterest($storeId),

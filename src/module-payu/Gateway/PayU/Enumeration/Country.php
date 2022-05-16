@@ -17,66 +17,61 @@ namespace Eloom\PayU\Gateway\PayU\Enumeration;
 use Eloom\Core\Lib\Enumeration\AbstractMultiton;
 
 class Country extends AbstractMultiton {
-	
-	public function getCode() {
-		return $this->code;
-	}
-	
+
 	public function getCurrency() {
 		return $this->currency;
 	}
-	
+
 	public function getLanguage() {
 		return $this->language;
 	}
-	
-	public function isArgentina(): bool {
-		return $this->code == 'AR';
+
+	public function isArgentina($code): bool {
+		return $code == 'AR';
 	}
-	
-	public function isBrazil(): bool {
-		return $this->code == 'BR';
+
+	public function isBrazil($code): bool {
+		return $code == 'BR';
 	}
-	
-	public function isChile(): bool {
-		return $this->code == 'CL';
+
+	public function isChile($code): bool {
+		return $code == 'CL';
 	}
-	
-	public function isColombia(): bool {
-		return $this->code == 'CO';
+
+	public function isColombia($code): bool {
+		return $code == 'CO';
 	}
-	
-	public function isMexico(): bool {
-		return $this->code == 'MX';
+
+	public function isMexico($code): bool {
+		return $code == 'MX';
 	}
-	
-	public function isPanama(): bool {
-		return $this->code == 'PA';
+
+	public function isPanama($code): bool {
+		return $code == 'PA';
 	}
-	
-	public function isPeru(): bool {
-		return $this->code == 'PE';
+
+	public function isPeru($code): bool {
+		return $code == 'PE';
 	}
-	
+
 	protected static function initializeMembers() {
-		new static('ARS', 'AR', 'ARS', 'es');
-		new static('BRL', 'BR', 'BRL', 'pt');
-		new static('CLP', 'CL', 'CLP', 'es');
-		new static('COP', 'CO', 'COP', 'es');
-		new static('MXN', 'MX', 'MXN', 'es');
-		new static('PAB', 'PA', 'USD', 'es');
-		new static('PEN', 'PE', 'PEN', 'es');
+		new static('ARS', 'ARS', 'es');
+		new static('BRL', 'BRL', 'pt');
+		new static('CLP', 'CLP', 'es');
+		new static('COP', 'COP', 'es');
+		new static('MXN', 'MXN', 'es');
+		new static('PAB', 'USD', 'es');
+		new static('PEN', 'PEN', 'es');
+		new static('USD', 'USD', 'en');
 	}
-	
-	protected function __construct($key, $code, $currency, $language) {
+
+	protected function __construct($key, $currency, $language) {
 		parent::__construct($key);
-		
-		$this->code = $code;
+
 		$this->currency = $currency;
 		$this->language = $language;
 	}
-	
-	private $code;
+
 	private $currency;
 	private $language;
 }

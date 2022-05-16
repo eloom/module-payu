@@ -40,6 +40,7 @@
 		<message code="DECLINED_TEST_MODE_NOT_ALLOWED" translate="true">DECLINED_TEST_MODE_NOT_ALLOWED</message>
 		<message code="Parameter [payerDNI] is required." translate="true">Parameter [payerDNI] is required.</message>
 		<message code="The credit card expiration date is not valid" translate="true">The credit card expiration date is not valid</message>
+		<message code="There are not active routes to process the authorization" translate="true">There are not active routes to process the authorization</message>
 		<message code="ERROR" translate="true">ERROR</message>
 	</message_list>
 </mapping>

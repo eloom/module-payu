@@ -55,7 +55,9 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	
 	const KEY_INVOICE = 'invoice';
 	
-	const INTERESTS = 'interests';
+	const KEY_INTERESTS = 'interests';
+
+	const KEY_COUNTRY_CODE = 'general/country/default';
 	
 	private $scopeConfig;
 	
@@ -136,7 +138,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	}
 	
 	public function getInterests($storeId = null) {
-		return $this->getValue(self::INTERESTS, $storeId);
+		return $this->getValue(self::KEY_INTERESTS, $storeId);
 	}
 	
 	public function isPayerPayInterests($storeId = null) {
@@ -145,5 +147,9 @@ class Config extends \Magento\Payment\Gateway\Config\Config {
 	
 	public function isInvoiceCreate($storeId = null) {
 		return (bool)$this->getValue(self::KEY_INVOICE, $storeId);
+	}
+
+	public function getCountryCode($storeId = null) {
+		return $this->scopeConfig->getValue(self::KEY_COUNTRY_CODE, ScopeInterface::SCOPE_WEBSITES);
 	}
 }

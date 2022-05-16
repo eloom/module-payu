@@ -1,0 +1,59 @@
+# -- T
+"Transaction.State.APPROVED","Approved"
+"Transaction.State.DECLINED","Declined"
+"Transaction.State.ERROR","Error processing transaction"
+"Transaction.State.EXPIRED","Expired"
+"Transaction.State.PENDING","Pending"
+"Transaction.State.SUBMITTED","Transaction sent to the financial entity and for some reason has not finished processing"
+"Transaction.State.CANCELLED","Cancelled"
+
+# -- U
+
+# -- V
+
+# -- Y
+
+# -- W
+
+# --
+"APPROVED","The transaction has been approved."
+"ANTIFRAUD_REJECTED","The transaction was rejected. Contact your carrier to clear the transaction. Make sure you have entered your credit card and address details correctly. The Billing Address must match the Credit Card Billing Address."
+"PAYMENT_NETWORK_REJECTED","The financial institution rejected your transaction. Contact your bank for more details."
+"ENTITY_DECLINED","The transaction was rejected by the bank or the financial network due to an error. Please contact the issuing bank for more details."
+"INTERNAL_PAYMENT_PROVIDER_ERROR","An error occurred in the system trying to process the payment. Try again later."
+"INACTIVE_PAYMENT_PROVIDER","The payment provider was not active. Try again later."
+"DIGITAL_CERTIFICATE_NOT_FOUND","The financial network reported an authentication error. Contact the store and report the problem."
+"INVALID_EXPIRATION_DATE_OR_SECURITY_CODE","The security code or credit card expiration date is invalid. Please check the data and try again."
+"INVALID_RESPONSE_PARTIAL_APPROVAL","Invalid response type. The financial entity has partially approved the transaction, but it will be automatically canceled by the system."
+"INSUFFICIENT_FUNDS","Make sure you have enough balance to make this purchase."
+"CREDIT_CARD_NOT_AUTHORIZED_FOR_INTERNET_TRANSACTIONS","The credit card was not authorized for Internet transactions. Contact the issuing bank and request the release."
+"INVALID_TRANSACTION","The financial network reported that the transaction was invalid. Check that you have entered the data correctly."
+"INVALID_CARD","The credit card is invalid. Please try again and enter the card correctly."
+"EXPIRED_CARD","The credit card has already expired."
+"RESTRICTED_CARD","The credit card has a restriction. Please contact the issuing bank for more details."
+"CONTACT_THE_ENTITY","You should contact the issuing bank to find out why the transaction was declined."
+"REPEAT_TRANSACTION","There was a problem processing your request. Try again."
+"ENTITY_MESSAGING_ERROR","The financial network reported a communications error with the bank. Try again."
+"BANK_UNREACHABLE","The bank was not available. Try again later."
+"EXCEEDED_AMOUNT","The transaction amount exceeds the amount established by the bank. Please contact your issuing bank to resolve the issue."
+"NOT_ACCEPTED_TRANSACTION","The transaction was not accepted by the issuing bank for some reason. Please contact your issuing bank to resolve the issue."
+"ERROR_CONVERTING_TRANSACTION_AMOUNTS","An error occurred converting amounts to the payment currency."
+"EXPIRED_TRANSACTION","The transaction has expired. Try again."
+"PENDING_TRANSACTION_REVIEW","The transaction has been stopped and must be reviewed, this may be due to security filters."
+"PENDING_TRANSACTION_CONFIRMATION","The transaction is pending confirmation."
+"PENDING_TRANSACTION_TRANSMISSION","The transaction is pending to be transmitted to the financial network. This usually applies to transactions using cash payment methods."
+"PAYMENT_NETWORK_BAD_RESPONSE","The message returned by the financial network is inconsistent."
+"PAYMENT_NETWORK_NO_CONNECTION","Unable to connect to the financial network."
+"PAYMENT_NETWORK_NO_RESPONSE","The financial network did not respond."
+"FIX_NOT_REQUIRED","Internal operation code."
+"AUTOMATICALLY_FIXED_AND_SUCCESS_REVERSAL","Internal operation code. Only applicable for the Query API."
+"AUTOMATICALLY_FIXED_AND_UNSUCCESS_REVERSAL","Internal operation code. Only applicable for the Query API."
+"AUTOMATIC_FIXED_NOT_SUPPORTED","Internal operation code. Only applicable for the Query API."
+"NOT_FIXED_FOR_ERROR_STATE","Internal operation code. Only applicable for the Query API."
+"ERROR_FIXING_AND_REVERSING","Internal operation code. Only applicable for the Query API."
+"ERROR_FIXING_INCOMPLETE_DATA","Internal operation code. Only applicable for the Query API."
+"DECLINED_TEST_MODE_NOT_ALLOWED","This account is not available for test orders."
+"Parameter [payerDNI] is required.","Taxvat is mandatory. Check your account information to make sure you entered the CPF correctly."
+"The credit card expiration date is not valid","Credit card expiration date is invalid."
+"ERROR","There was an error processing your request. Please try again, or choose another payment method."
+"There are not active routes to process the authorization","Payment method not activated to process the request. Contact your PayU Account Manager."

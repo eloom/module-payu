@@ -59,8 +59,8 @@ class CreditCadDataAssignObserver extends AbstractDataAssignObserver {
 		$paymentInfo->setAdditionalInformation('sessionId', $this->cookieManager->getCookie('PHPSESSID'));
 		$paymentInfo->setAdditionalInformation('userAgent', $this->httpHeader->getHttpUserAgent());
 		$paymentInfo->setAdditionalInformation('deviceSessionId', $additionalData->getCcDeviceSessionId());
-		
-		$ccNumber = preg_replace('/[\-\s]+/', '', $additionalData->getCcNumber());
+
+		$ccNumber = preg_replace('/[\-\s]+/', '', $additionalData->getCcNumber()?? '');
 		$paymentInfo->addData(
 			[
 				OrderPaymentPayUInterface::CC_NUMBER_ENC => $ccNumber,
