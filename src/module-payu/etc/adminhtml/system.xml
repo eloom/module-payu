@@ -4,7 +4,7 @@
 		<section id="payment">
 			<group id="eloom_payu_latam" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
 				<label><![CDATA[PayU LATAM Payments (by <a href="https://docs.eloom.tech/es/payment/payu-latam" target="_blank">élOOm Commerce</a>)]]></label>
-				<comment><![CDATA[Accept credit/debit cards and local payments in your Magento store in Argentina, Brazil, Chile, Colombia, Mexico, Panama and Peru.<br/>The purchase is completed at the store.]]></comment>
+				<comment><![CDATA[Accept credit/debit cards and local payments in your Magento store in Argentina, Brazil, Chile, Colombia, Mexico, Panama and Peru.]]></comment>
 				<fieldset_css>complex eloom-section</fieldset_css>
 				<frontend_model>Eloom\PayU\Block\Adminhtml\Config\Fieldset</frontend_model>
 				<attribute type="displayIn">recommended_solutions</attribute>
