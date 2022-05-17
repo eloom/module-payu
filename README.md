@@ -28,16 +28,16 @@ Mastercard, Visa
 American Express, Diners, Mastercard, Visa
 
 ## Pagamento local para PayU Argentina
-Pago Fácil + Rapipago - instale o pacote adicional [PayU Argentina](https://github.com/eloom/module-payu-ar).
+Pago Fácil e Rapipago - instale o pacote adicional [PayU Argentina](https://github.com/eloom/module-payu-ar).
 
 ## Pagamento local para PayU Brasil
-Boleto bancário - instale o pacote adicional [PayU Brasil](https://github.com/eloom/module-payu-br).
+Boleto bancário e PIX - instale o pacote adicional [PayU Brasil](https://github.com/eloom/module-payu-br).
 
 ## Pagamento local para PayU Chile
 MULTIcaja/Klap - instale o pacote adicional [PayU Chile](https://github.com/eloom/module-payu-cl).
 
 ## Pagamento local para PayU Colombia
-Baloto, Effecty e PSE - instale o pacote adicional [PayU Colombia](https://github.com/eloom/module-payu-co).
+Effecty e PSE - instale o pacote adicional [PayU Colombia](https://github.com/eloom/module-payu-co).
 
 ## Pagamento local para PayU Mexico
 Oxxo e 7-ELEVEN - instale o pacote adicional [PayU Mexico](https://github.com/eloom/module-payu-mx).

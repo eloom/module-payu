@@ -35,7 +35,7 @@
   "require": {
     "php": "~8.1",
     "magento/framework": "103.0.4",
-    "eloom/module-payment": "dev-main"
+    "eloom/module-payment": "2.0.*"
   },
   "license": [
     "OSL-3.0",
