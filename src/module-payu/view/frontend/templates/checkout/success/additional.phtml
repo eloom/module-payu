@@ -12,12 +12,44 @@ $isCc = $block->isCc();
 
 		<dd><?php echo __('PayU Transaction ID'); ?></dd>
 		<dt><?php echo $block->getTransactionId(); ?></dt>
-		
+
+        <?php if($expirationDate = $block->getExpirationDate()):
+            $date = new \DateTime();
+            $date->setTimestamp(substr($expirationDate, 0, 10));
+            ?>
+          <dd><?= __('Expiration Date') ?></dd>
+          <dt class="expiration-date"><?= $date->format('d-m-Y H:i:s') ?></dt>
+        <?php endif;?>
+        <?php if($qrCodeEmv = $block->getQrCodeEmv()):?>
+          <dd><?= __('PIX') ?></dd>
+          <dt>
+            <?php if($qrCodeImageBase64 = $block->getQrCodeImageBase64()):?>
+                <div class="qr-code-image-base64">
+                  <?="<img width='200px' src='data:image/jpeg;base64,$qrCodeImageBase64'/>"?>
+                </div>
+            <?php endif;?>
+              <div class="qr-code-emv">
+                  <div><?= $qrCodeEmv ?></div>
+                  <div style="display: inline-block;">
+                      <svg style="display: inline-block; vertical-align: middle; margin: 0 5px 0 0; width: 20px" aria-hidden="true"
+                           focusable="false" data-prefix="fas" data-icon="copy" class="svg-inline--fa fa-copy fa-w-14" role="img"
+                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path fill="blue"
+                                d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z">
+                          </path>
+                      </svg>
+                      <a id="payu_pix_copy" style="display: inline-block; vertical-align: middle; margin: 0 5px 0 0;"><?= __('Copy PIX code') ?></a>
+                      <input style="opacity: 0; user-select: none; pointer-events: none;" type="text" value="<?= $qrCodeEmv ?>" id="payu_pix_qr_code"/>
+                  </div>
+              </div>
+          </dt>
+        <?php endif;?>
+
 		<?php if ($barCode = $block->getBarcode()): ?>
 			<dd><?php echo __('Bar Code'); ?></dd>
 			<dt class="barcode"><?php echo $barCode; ?></dt>
 		<?php endif; ?>
-		
+
 		<?php if ($htmlLink = $block->getPaymentLink()): ?>
 			<dd><?php echo __('Voucher Link'); ?></dd>
 			<dt class="payment-link">
@@ -26,7 +58,7 @@ $isCc = $block->isCc();
 				</a>
 			</dt>
 		<?php endif; ?>
-		
+
 		<?php if ($htmlLink = $block->getBankUrl()): ?>
 			<dd><?php echo __('Bank'); ?></dd>
 			<dt class="bank-url">
@@ -35,7 +67,7 @@ $isCc = $block->isCc();
 				</a>
 			</dt>
 		<?php endif; ?>
-		
+
 		<?php if ($pdfLink = $block->getPdfLink()): ?>
 			<dd><?php echo __('Voucher PDF'); ?></dd>
 			<dt class="pdf">
@@ -44,14 +76,14 @@ $isCc = $block->isCc();
 				</a>
 			</dt>
 		<?php endif; ?>
-		
+
 		<?php if ($isCc): ?>
 			<dd><?php echo __('Credit Card Type'); ?></dd>
 			<dt><?php echo $block->getCcType(); ?></dt>
 
 			<dd><?php echo __('Last Credit Card Number'); ?></dd>
 			<dt><?php echo sprintf('xxxx xxxx xxxx %s', $block->getCcLast4()); ?></dt>
-			
+
 			<?php if ($block->hasInstallments()): ?>
 				<dd><?php echo __('Installments'); ?></dd>
 				<dt><?php echo $block->getFormattedInstallmentAmount(); ?></dt>
@@ -64,14 +96,27 @@ $isCc = $block->isCc();
 	require([
 		'jquery'
 	], function ($) {
-		$(document).ready(function () {
-			try {
-				if ($('#payu-details dt.bank-url').length > 0) {
-					$('#payu-details dt.bank-url a').get(0).click();
+			$(document).ready(function () {
+				try {
+					if ($('#payu-details dt.bank-url').length > 0) {
+						$('#payu-details dt.bank-url a').get(0).click();
+					}
+				} catch (e) {
+					console.error(e);
 				}
-			} catch (e) {
-				console.error(e);
-			}
-		});
+				try {
+					$('#payu_pix_copy').click(function () {
+						var copyText = document.getElementById('payu_pix_qr_code');
+
+						copyText.select();
+						copyText.setSelectionRange(0, 99999);
+						document.execCommand("copy");
+
+						alert("<?= __('PIX code copied')?>");
+					});
+				} catch (e) {
+					console.error(e);
+				}
+			});
 	});
 </script>

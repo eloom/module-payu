@@ -239,6 +239,9 @@ class AuthorizeDataBuilder implements BuilderInterface {
 				}
 			}
 		} else if ($country->isBrazil($countryCode)) {
+			$buyer[self::DNI_TYPE] = 'CPF';
+			$payer[self::DNI_TYPE] = 'CPF';
+
 			if (strlen($taxvat) == 14) {
 				$buyer[self::DNI_TYPE] = 'CNPJ';
 				$buyer[self::CNPJ] = $taxvat;

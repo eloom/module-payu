@@ -179,5 +179,16 @@ class Additional extends \Magento\Framework\View\Element\Template {
 		
 		return (null != $installments && !empty($installments));
 	}
-	
+
+	public function getExpirationDate() {
+		return $this->getPayment()->getAdditionalInformation('expirationDate');
+	}
+
+	public function getQrCodeEmv() {
+		return $this->getPayment()->getAdditionalInformation('qrCodeEmv');
+	}
+
+	public function getQrCodeImageBase64() {
+		return $this->getPayment()->getAdditionalInformation('qrCodeImageBase64');
+	}
 }

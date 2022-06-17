@@ -16,6 +16,7 @@
 "Credit Card Number","Número do cartão"
 "Credit Card CVV","Cód. segurança"
 "Contact your Account Manager or PayU Support.","Contate seu Gerente ou o Suporte PayU."
+"Copy PIX code","Copiar"
 
 # -- D
 "Discount first installment","Desconto à vista"
@@ -24,6 +25,7 @@
 # -- E
 "Error","Erro"
 "Eloom PayU Wrong transaction status.","O sistema não obteve um status válido de transação da PayU."
+"Expiration Date","Data de expiração"
 
 # -- G
 "Generate invoice when confirming payment?","Gerar fatura ao confirmar o pagamento?"
@@ -81,6 +83,7 @@
 "Payment method nonce can't be retrieved.","O método de pagamento não pode ser recuperado."
 "PayU - Vault","PayU - Tokenização"
 "Payer pays interest", "Lojista repassa os juros"
+"PIX code copied","Código Pix copiado"
 
 # -- S
 "Save for later use.","Salvar para compras futuras."
